@@ -5,7 +5,8 @@ function sleep() {
 
 async function getLogHistory() {
     const data = [
-        { text: "Clique no link agoraaaaaaaaaaaa", link_param: "https://www.youtube.com"},
+        { text: "Contact New", link_param: "https://www.youtube.com"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
     ];
     await sleep();
     return data;
@@ -17,6 +18,7 @@ function renderHistory(history) {
         const text = document.createElement('a');
         text.innerHTML = currentItem.text;
         text.href = currentItem.link_param;
+        text.classList.add('linkHistory');
         logContainer.appendChild(text);
     }
 }
@@ -24,10 +26,12 @@ function renderHistory(history) {
 window.onload = async () => {
     const history = await getLogHistory();
     renderHistory(history);
+
+    const metric = await getKeyMetrics();
+    renderKeyMetrics(metric);
 };
 
-
-
+// Tabs (header)
 async function getTabs(){
     const data = [
         { 'id': 'xxx-yyy', 'text': 'Dashboard01', 'link_param': 'google'}
@@ -35,15 +39,38 @@ async function getTabs(){
     sleep()
     return data
 }
- 
+
+// Indicadores
 async function getKeyMetrics(){
-    const data = [
-        { 'id': 'xxx-yyy', 'text': 'Dashboard01', 'bgcolor': 'blue', 'link_param': 'google', 'qty': 1}
+    const dataMetric = [
+        { 'id': 'xxx-yyy', 'text': 'Pendências de aprovação', 'bgcolor': '#FFF', 'link_param': 'google', 'qty': 1},
     ]
     sleep()
-    return data
+    return dataMetric
 }
 
+function renderKeyMetrics(metric){
+    for (let index = 0; index < metric.length; index += 1){
+        const currentItemMetric = metric[index];
+        const linkMetric = document.createElement('a');
+        linkMetric.id = currentItemMetric.id;
+        linkMetric.href = currentItemMetric.link_param;
+        linkMetric.style.background = currentItemMetric.bgcolor;
+
+        const textMetric = document.createElement('span')
+        textMetric.innerHTML = currentItemMetric.text;
+        linkMetric.appendChild(textMetric);
+
+        const imgMetric = document.createElement('img');
+        imgMetric.src = './assets/arrowRight.svg';
+        imgMetric.alt = 'Imagem do botão de métrica';
+        linkMetric.appendChild(imgMetric);
+
+        metricContainer.appendChild(linkMetric);
+    }
+}
+
+// Atalhos
 async function getShortcuts(){
     const data = [
         { 'id': 'xxx-yyy', 'icon': 'mdi-xxx', 'text': 'Dashboard01', 'icon_color': 'red', 'bgcolor': 'blue', 'link_param': 'google', 'position': 1}

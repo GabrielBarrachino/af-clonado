@@ -1,0 +1,8 @@
+.headerContainer nav ul, .headerContainer nav ul li a{
+    display: flex;
+    align-items: center;
+}
+
+.headerContainer nav ul li a{
+    gap: .7rem;
+}

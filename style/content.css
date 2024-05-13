@@ -1,0 +1,32 @@
+.logContainer{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logContainer a{
+    padding: 10px;
+    border: 1px solid #DADADA;
+    border-radius: 10px;
+    box-shadow: 1px 2px 2px #BFC5CF;
+}
+
+.containerMetrica p, .containerMetrica{
+    margin-bottom: 1rem;
+}
+
+.metricContainer a{
+    padding: 7px 20px;
+    border: 1px solid #DADADA;
+    border-radius: 10px;
+    box-shadow: 1px 2px 2px #BFC5CF;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 260px;
+}
+
+.metricContainer a img{
+    max-width: 20px;
+    height: 20px;
+}

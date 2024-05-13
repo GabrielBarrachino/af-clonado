@@ -3,11 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/content.css">
     <title>AF</title>
 </head>
 <body>
-    <div id="logContainer">
-    </div>
+    <header class="container headerContainer">
+        <nav>
+            <ul>
+                <li class="itemList">
+                    <a href="#">
+                        <img src="./assets/home.svg" alt="Ícone Home">
+                        <span>Home</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="container">
+        <div class="containerMetrica">
+            <p>Métrica</p>
+            <div id="metricContainer" class="metricContainer"></div>
+        </div>
+        <div class="containerHistorico">
+            <p>Histórico</p>
+            <div id="logContainer" class="logContainer"></div>
+        </div>
+    </section>
 
     <script src="/script/requests.js"></script>
 </body>
