@@ -130,7 +130,7 @@ function renderShortcuts(short) {
 }
 
 
-
+// Opções visitadas recentemente
 async function getRecentFeaturesVisits(){
     const data = [
         { 'id': 'xxx-yyy', 'icon': 'mdi-xxx', 'text': 'Dashboard01', 'icon_color': 'red', 'bgcolor': 'blue', 'link_param': 'google', 'date': '10/01'}

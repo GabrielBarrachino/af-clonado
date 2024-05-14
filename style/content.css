@@ -128,3 +128,54 @@
     position: absolute;
     border-radius: 50%;
 }
+
+.recentContainer .boxRecent {
+    width: 100%;
+    max-width: 350px;
+    display: block;
+    padding: 24px 16px;
+    border: 1px solid #DADADA;
+    border-radius: 10px;
+    box-shadow: 1px 2px 2px #BFC5CF;
+    position: relative;
+    transition: all .3s;
+}
+.recentContainer .boxRecent:hover{
+    border: solid 1px #0084fb;
+    box-shadow: 1px 2px 2px #0084fb;
+    cursor: pointer;
+}
+.recentContainer .boxRecent .divClients, .recentContainer .boxRecent .divMarked{
+    width: 100%;
+    max-width: max-content;
+    background: #E8F6FF;
+    padding: 10px;
+    border-radius: 7px;
+    margin-bottom: 1rem;
+}
+.recentContainer .boxRecent .divClients .imgClients{
+    max-width: 39px;
+    height: 39px;
+}
+
+.recentContainer .boxRecent div .imgFixar{
+    max-width: 10px;
+    height: 15px;
+    position: absolute;
+    top: 14px;
+    right: 22px;
+}
+
+.recentContainer .boxRecent .date{
+    color: #939393;
+    font-size: 13px;
+    margin-bottom: .1rem;
+}
+
+.recentContainer .boxRecent .title{
+    font-size: 18px;
+}
+
+.recentContainer .boxRecent .divMarked{
+    background: #EEE9FB;
+}
