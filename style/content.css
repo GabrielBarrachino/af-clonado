@@ -9,6 +9,14 @@
     border: 1px solid #DADADA;
     border-radius: 10px;
     box-shadow: 1px 2px 2px #BFC5CF;
+    transition: .2s all;
+}
+
+.logContainer a:hover{
+    background:  #0084fb;
+    color: white;
+    border: 1px solid #0084fb;
+    cursor: pointer;
 }
 
 .containerMetrica p, .containerMetrica{
@@ -16,17 +24,107 @@
 }
 
 .metricContainer a{
-    padding: 7px 20px;
+    padding: 8px 16px;
     border: 1px solid #DADADA;
     border-radius: 10px;
     box-shadow: 1px 2px 2px #BFC5CF;
     display: flex;
     align-items: center;
     gap: 15px;
-    max-width: 260px;
+    max-width: max-content;
+    transition: .2s all;
+}
+
+.metricContainer a:hover{
+    border: solid 1px #0084fb;
+    box-shadow: 1px 2px 2px #0084fb;
+    cursor: pointer;
+}
+
+.numberSpan{
+    padding: 8px 4px;
+    border-radius: 50%;
+    color: white;
+    width: 32px;
+    font-size: 15px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textSpan{
+    font-size: 1rem;
+    color: #3E3E3E;
 }
 
 .metricContainer a img{
-    max-width: 20px;
+    width: 12px;
     height: 20px;
+}
+
+
+
+/* shortcuts */
+
+.boxImg{
+    background: #fff;
+    border: 1px solid #DADADA;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 2px 2px #BFC5CF;
+    transition: .2s all;
+    position: relative;
+}
+
+.boxImg img{
+    width: 39px;
+    height: 39px;
+    position: relative;
+    z-index: 11;
+}
+
+.boxImg::after{
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.boxImg:hover{
+    border: solid 1px #0084fb;
+    box-shadow: 1px 2px 2px #0084fb;
+}
+
+.boxCont{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 200px;
+    text-align: center;
+}
+
+.boxCont p {
+    font-size: 1rem;
+    color: #3E3E3E;
+    margin-top: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    -webkit-box-orient: vertical; 
+    max-width: 200px;
+}
+
+.bgSpan{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    border-radius: 50%;
 }
