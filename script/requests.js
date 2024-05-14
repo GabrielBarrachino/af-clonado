@@ -33,6 +33,12 @@ window.onload = async () => {
 
     const shortcuts = await getShortcuts()
     renderShortcuts(shortcuts)
+
+    const visits = await getRecentFeaturesVisits()
+    renderRecentFeaturesVisits(visits)
+
+    const boards = await getMyBoards()
+    renderMyBoards(boards)
 };
 
 // Tabs (header)
@@ -115,8 +121,8 @@ function renderShortcuts(short) {
         imgShort.src = currentItemShort.icon;
         imgShort.alt = currentItemShort.text;
 
-        divImgShort.appendChild(spanBg); // Adiciona o fundo colorido antes da imagem
-        divImgShort.appendChild(imgShort); // Adiciona a imagem
+        divImgShort.appendChild(spanBg);
+        divImgShort.appendChild(imgShort); 
 
         shortcut.appendChild(divImgShort);
 
@@ -124,6 +130,7 @@ function renderShortcuts(short) {
         textShort.innerHTML = currentItemShort.text;
 
         shortcut.appendChild(textShort);
+
 
         circulatesContainer.appendChild(shortcut);
     }
@@ -133,18 +140,100 @@ function renderShortcuts(short) {
 // Opções visitadas recentemente
 async function getRecentFeaturesVisits(){
     const data = [
-        { 'id': 'xxx-yyy', 'icon': 'mdi-xxx', 'text': 'Dashboard01', 'icon_color': 'red', 'bgcolor': 'blue', 'link_param': 'google', 'date': '10/01'}
+        { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'}
     ]
     sleep()
     return data
 }
 
+
+function renderRecentFeaturesVisits(visits) {
+    for (let index = 0; index < visits.length; index += 1) {
+        const featuresVisits = visits[index];
+        const featuresVisitsCard = document.createElement('a');
+        featuresVisitsCard.classList.add('boxRecent');
+        featuresVisitsCard.id = featuresVisits.id;
+        featuresVisitsCard.href = featuresVisits.link_param;
+
+        const divimg = document.createElement('div');
+        divimg.classList.add('divClients')
+        divimg.style.background = featuresVisits.bgcolor
+        const divFixarImg = document.createElement('div'); 
+
+        const img = document.createElement('img');
+        img.classList.add('imgClients');
+        img.src = featuresVisits.icon; 
+
+        const imgFixar = document.createElement('img');
+        imgFixar.classList.add('imgFixar');
+        imgFixar.src = '../assets/fixar.svg'; 
+
+        divimg.appendChild(img);
+        divFixarImg.appendChild(imgFixar);
+
+        const pDate = document.createElement('p');
+        pDate.classList.add('date');
+        pDate.innerHTML = featuresVisits.date;
+
+        const ptitle = document.createElement('p');
+        ptitle.classList.add('title');
+        ptitle.innerHTML = featuresVisits.text;
+
+        featuresVisitsCard.appendChild(divimg);
+        featuresVisitsCard.appendChild(divFixarImg);
+        featuresVisitsCard.appendChild(pDate);
+        featuresVisitsCard.appendChild(ptitle);
+
+        recentContainer.appendChild(featuresVisitsCard)
+    }
+}
+
+
 async function getMyBoards(){
     const data = [
-        { 'id': 'xxx-yyy', 'icon': 'mdi-xxx', 'text': 'Dashboard01', 'icon_color': 'red', 'bgcolor': 'blue', 'link_param': 'google'}
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'}
     ]
     sleep()
     return data
+}
+
+function renderMyBoards(boards){
+    for (let index = 0; index < boards.length; index += 1){
+
+        const myBoards = boards[index];
+        console.log(myBoards);
+        const myBoardsCard = document.createElement('a');
+        myBoardsCard.classList.add('boxRecent');
+        myBoardsCard.id = myBoards.id;
+        myBoardsCard.href = myBoards.link_param;
+
+        const divFixarImg = document.createElement('div'); 
+        const divimg = document.createElement('div');
+        divimg.classList.add('divMarked')
+        divimg.style.background = myBoards.bgcolor
+
+
+        const imgFixar = document.createElement('img');
+        imgFixar.classList.add('imgFixar');
+        imgFixar.src = '../assets/fixar.svg'; 
+
+        const img = document.createElement('img');
+        img.classList.add('imgClients');
+        img.src = myBoards.icon; 
+
+        const textBoards = document.createElement('p');
+        textBoards.innerHTML = myBoards.text;
+
+        divimg.appendChild(img);
+        divFixarImg.appendChild(imgFixar);
+
+        myBoardsCard.appendChild(divimg)
+        myBoardsCard.appendChild(divFixarImg)
+        myBoardsCard.appendChild(textBoards)
+        
+        tasksContainer.appendChild(myBoardsCard)
+    }
 }
 
 async function getSearchShortcuts(){

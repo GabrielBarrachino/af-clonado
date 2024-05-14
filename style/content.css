@@ -5,7 +5,7 @@
 }
 
 .logContainer a{
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #DADADA;
     border-radius: 10px;
     box-shadow: 1px 2px 2px #BFC5CF;
@@ -24,7 +24,7 @@
 }
 
 .metricContainer a{
-    padding: 8px 16px;
+    padding: 4px 8px;
     border: 1px solid #DADADA;
     border-radius: 10px;
     box-shadow: 1px 2px 2px #BFC5CF;
@@ -42,7 +42,7 @@
 }
 
 .numberSpan{
-    padding: 8px 4px;
+    padding: 6px 4px;
     border-radius: 50%;
     color: white;
     width: 32px;
@@ -71,8 +71,8 @@
     background: #fff;
     border: 1px solid #DADADA;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -83,20 +83,12 @@
 }
 
 .boxImg img{
-    width: 39px;
-    height: 39px;
+    width: 25px;
+    height: 25px;
     position: relative;
     z-index: 11;
 }
 
-.boxImg::after{
-    content: '';
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    z-index: 0;
-}
 
 .boxImg:hover{
     border: solid 1px #0084fb;
@@ -123,39 +115,44 @@
 }
 
 .bgSpan{
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     position: absolute;
     border-radius: 50%;
 }
 
-.recentContainer .boxRecent {
+
+.imgClients{
+    width: 25px;
+    height: 25px;
+}
+
+.recentContainer .boxRecent, .tasksContainer .boxRecent {
     width: 100%;
     max-width: 350px;
     display: block;
-    padding: 24px 16px;
+    padding: 16px 8px;
     border: 1px solid #DADADA;
     border-radius: 10px;
     box-shadow: 1px 2px 2px #BFC5CF;
     position: relative;
     transition: all .3s;
 }
-.recentContainer .boxRecent:hover{
+.recentContainer .boxRecent:hover, .tasksContainer .boxRecent:hover{
     border: solid 1px #0084fb;
     box-shadow: 1px 2px 2px #0084fb;
     cursor: pointer;
 }
-.recentContainer .boxRecent .divClients, .recentContainer .boxRecent .divMarked{
+.recentContainer .boxRecent .divClients, .tasksContainer .boxRecent .divMarked{
     width: 100%;
     max-width: max-content;
-    background: #E8F6FF;
-    padding: 10px;
+    padding: 8px;
     border-radius: 7px;
     margin-bottom: 1rem;
 }
 .recentContainer .boxRecent .divClients .imgClients{
-    max-width: 39px;
-    height: 39px;
+    max-width: 25px;
+    height: 25px;
 }
 
 .recentContainer .boxRecent div .imgFixar{
@@ -166,14 +163,22 @@
     right: 22px;
 }
 
+.tasksContainer  div .imgFixar{
+    max-width: 10px;
+    height: 15px;
+    position: absolute;
+    top: 14px;
+    right: 22px;
+}
+
 .recentContainer .boxRecent .date{
     color: #939393;
     font-size: 13px;
-    margin-bottom: .1rem;
+    margin-bottom: .4rem;
 }
 
 .recentContainer .boxRecent .title{
-    font-size: 18px;
+    font-size: 1rem;
 }
 
 .recentContainer .boxRecent .divMarked{
