@@ -1,6 +1,18 @@
+section{
+    margin-bottom: 2rem;
+}
+
+.textTitle{
+    margin-bottom: 20px;
+    color: #474747;
+    font-weight: 500;
+    font-size: 18px;
+}
+
 .logContainer{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -21,6 +33,14 @@
 
 .containerMetrica p, .containerMetrica{
     margin-bottom: 1rem;
+}
+
+.metricContainer{
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .metricContainer a{
@@ -66,6 +86,56 @@
 
 
 /* shortcuts */
+.containerCirculates{
+    position: relative;
+}
+.circulatesContainer{
+    display: flex;
+    align-items: start;
+    gap: 34px;
+    margin-top: 20px;
+}
+
+.circulatesContainer .contentTop{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.circulatesContainer .contentTop label{
+    cursor: pointer;
+    font-size: .9rem;
+}
+
+.circulatesContainer .contentTop .select{
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 180px;
+    cursor: pointer;
+    padding: 10px 8px;
+    border: 1px solid #E6E6E6;
+    border-radius: 10px;
+    box-shadow: 0px 1px 3px #E6E6E6;
+}
+
+.circulatesContainer .contentTop .select img{
+    max-width: 15px;
+    height: 15px;
+}
+.circulatesContainer .contentTop .select span{
+    font-size: .9rem;
+}
+
+.circulatesContainer .contentBottom{
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 30px;
+}
 
 .boxImg{
     background: #fff;
@@ -95,12 +165,32 @@
     box-shadow: 1px 2px 2px #0084fb;
 }
 
+.boxContAdd{
+    background-color: #EBEBEB;
+}
+
+.boxCont .textAdd{
+    color: #A5A5A5;
+}
+
 .boxCont{
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 200px;
     text-align: center;
+    position: relative;
+    margin-top: 4rem;
+    width: 126px;
+}
+
+.boxCont .fixar{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.boxCont .fixar img{
+    max-width: 10px;
+    height: 15px;
 }
 
 .boxCont p {
@@ -111,7 +201,7 @@
     -webkit-line-clamp: 2;
     overflow: hidden;
     -webkit-box-orient: vertical; 
-    max-width: 200px;
+    max-width: 137px;
 }
 
 .bgSpan{
@@ -127,6 +217,16 @@
     height: 25px;
 }
 
+
+.containerHistorico, .containerRecente{
+    margin: 5rem 0;
+}
+
+.recentContainer, .tasksContainer{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
 .recentContainer .boxRecent, .tasksContainer .boxRecent {
     width: 100%;
     max-width: 350px;
@@ -183,4 +283,34 @@
 
 .recentContainer .boxRecent .divMarked{
     background: #EEE9FB;
+}
+
+@media(max-width: 1090px){
+    .recentContainer, .tasksContainer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media(max-width: 640px){
+    .circulatesContainer .contentBottom {
+        justify-content: center;
+        margin-top: 4.5rem;
+    }
+    .circulatesContainer .contentTop {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .boxCont {
+        margin-top: 0;
+    }
+    .circulatesContainer {
+        margin-top: 46px;
+    }
+}
+
+@media(max-width: 450px){
+    .metricContainer{
+        gap: 18px;
+    }
 }

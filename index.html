@@ -12,10 +12,22 @@
     <header class="container headerContainer">
         <nav>
             <ul>
-                <li class="itemList">
-                    <a href="#">
+                <li class="itemList menuSelectedItem">
+                    <a href="#" class="menuSelectedLink">
                         <img src="./assets/home.svg" alt="Ícone Home">
-                        <span>Home</span>
+                        <span class="textHeader">Home</span>
+                    </a>
+                </li>
+                <li class="itemList itemListDashboard">
+                    <a href="#">
+                        <img src="./assets/arrowRight.svg" alt="Ícone Home">
+                        <span class="textHeader textHeaderGray">Dashboard 01</span>
+                    </a>
+                </li>
+                <li class="itemList itemListDashboard">
+                    <a href="#">
+                        <img src="./assets/arrowRight.svg" alt="Ícone Home">
+                        <span class="textHeader textHeaderGray">Dashboard 02</span>
                     </a>
                 </li>
             </ul>
@@ -24,32 +36,83 @@
 
     <section class="container">
         <div class="containerMetrica">
-            <p>Métrica</p>
             <div id="metricContainer" class="metricContainer"></div>
         </div>
         <div class="containerCirculates">  
             <div id="circulatesContainer" class="circulatesContainer">
-                <a href="" class="boxCont">
-                    <div class="boxImg">
-                        <img src="assets/inbox.svg" alt="Imagem caixa">
+                <div class="contentTop">
+                    <label for="ordenacao">
+                        <input type="checkbox" name="ordenacao" id="ordenacao">
+                        <span>Habilitar ordenação</span>
+                    </label>
+                    <div class="select">
+                        <img src="./assets/fixar.svg" alt="">
+                        <span>Adicionar Atalhos</span>
+                        <img src="./assets/arrowDown.svg" alt="">
                     </div>
-                    <p>Caixa de Entrada</p>
-                </a>
+                </div>
+                <div class="contentBottom">
+                    <a href="" class="boxCont">
+                        <div class="fixar">
+                            <img src="./assets/fixar.svg" alt="">
+                        </div>
+                        <div class="boxImg">
+                            <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
+                            <img src="assets/inbox.svg" alt="Imagem caixa">
+                        </div>
+                        <p>Caixa de Entrada</p>
+                    </a>
+                    <a href="" class="boxCont">
+                        <div class="fixar">
+                            <img src="./assets/fixar.svg" alt="">
+                        </div>
+                        <div class="boxImg">
+                            <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
+                            <img src="assets/clients.svg" alt="Imagem caixa">
+                        </div>
+                        <p>Clientes</p>
+                    </a>
+                    <a href="" class="boxCont">
+                        <div class="fixar">
+                            <img src="./assets/fixar.svg" alt="">
+                        </div>
+                        <div class="boxImg">
+                            <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
+                            <img src="assets/time.svg" alt="Imagem caixa">
+                        </div>
+                        <p>Agendador</p>
+                    </a>
+                    <a href="" class="boxCont">
+                        <div class="fixar">
+                            <img src="./assets/fixar.svg" alt="">
+                        </div>
+                        <div class="boxImg">
+                            <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
+                            <img src="assets/clients.svg" alt="Imagem caixa">
+                        </div>
+                        <p>Clientes</p>
+                    </a>
+                    <a href="#" class="boxCont">
+                        <div class="boxImg boxContAdd">
+                            <img src="assets/plus.svg" alt="Imagem caixa">
+                        </div>
+                        <p class="textAdd">Adicionar atalhos</p>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="containerHistorico">
-            <p>Histórico</p>
+            <p class="textTitle">Histórico:</p>
             <div id="logContainer" class="logContainer"></div>
         </div>
         <div class="containerRecente">
-            <p>Opções visitadas recentemente:</p>
+            <p class="textTitle">Opções visitadas recentemente:</p>
             <div id="recentContainer" class="recentContainer">
             </div>
         </div>
         <div class="containerTasks">
-            <p>Meus quadros de tarefas:</p>
+            <p class="textTitle">Meus quadros de tarefas:</p>
             <div id="tasksContainer" class="tasksContainer">
-              
             </div>
         </div>
     </section>

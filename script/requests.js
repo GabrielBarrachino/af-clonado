@@ -8,6 +8,13 @@ async function getLogHistory() {
     const data = [
         { text: "Contact New", link_param: "https://www.youtube.com"},
         {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
     ];
     await sleep();
     return data;
@@ -91,14 +98,19 @@ function renderKeyMetrics(metric){
 // Atalhos
 async function getShortcuts(){
     const data = [
-        { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Clientes', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'position': 1},
-        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  mudanças GMUD e mais coisas e não foi ainda', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'position': 1},
+        // { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Clientes', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'position': 1},
+        // { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  mudanças GMUD e mais coisas e não foi ainda', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'position': 1},
+        // { 'id': 'xxx-yyy', 'icon': './assets/plus.svg', 'text': 'Adicionar atalho', 'icon_color': '#20CA41', 'bgcolor': '#fff', 'link_param': 'google', 'position': 1}
     ]
     sleep()
     return data
 }
 
 
+// Selecione a div com a classe contentBottom
+const contentBottom = document.querySelector('.contentBottom');
+
+// Defina a função renderShortcuts
 function renderShortcuts(short) {
     for (let index = 0; index < short.length; index += 1) {
         const currentItemShort = short[index];
@@ -110,19 +122,17 @@ function renderShortcuts(short) {
         const divImgShort = document.createElement('div');
         divImgShort.classList.add('boxImg');
 
-        // Criar o elemento span para o fundo colorido
         const spanBg = document.createElement('span');
         spanBg.style.backgroundColor = currentItemShort.bgcolor;
         spanBg.classList.add('bgSpan');
 
-        // Criar o elemento para o ícone
         const imgShort = document.createElement('img');
         imgShort.classList.add('bgImgFundo');
         imgShort.src = currentItemShort.icon;
         imgShort.alt = currentItemShort.text;
 
         divImgShort.appendChild(spanBg);
-        divImgShort.appendChild(imgShort); 
+        divImgShort.appendChild(imgShort);
 
         shortcut.appendChild(divImgShort);
 
@@ -131,8 +141,8 @@ function renderShortcuts(short) {
 
         shortcut.appendChild(textShort);
 
-
-        circulatesContainer.appendChild(shortcut);
+        // Adicione o atalho criado dentro da div contentBottom
+        contentBottom.appendChild(shortcut);
     }
 }
 
@@ -141,7 +151,9 @@ function renderShortcuts(short) {
 async function getRecentFeaturesVisits(){
     const data = [
         { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'date': '10/05/2024 22:33'},
-        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'}
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
     ]
     sleep()
     return data
@@ -192,7 +204,10 @@ function renderRecentFeaturesVisits(visits) {
 
 async function getMyBoards(){
     const data = [
-        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'}
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
     ]
     sleep()
     return data
@@ -202,7 +217,6 @@ function renderMyBoards(boards){
     for (let index = 0; index < boards.length; index += 1){
 
         const myBoards = boards[index];
-        console.log(myBoards);
         const myBoardsCard = document.createElement('a');
         myBoardsCard.classList.add('boxRecent');
         myBoardsCard.id = myBoards.id;
