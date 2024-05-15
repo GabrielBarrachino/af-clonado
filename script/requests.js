@@ -1,5 +1,5 @@
 function sleep() {
-    const ms = Math.floor(Math.random() * (8000 - 1000 + 1) + 1000);
+    const ms = Math.floor(Math.random() * (4000 - 1000 + 1) + 1000);
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
