@@ -1,5 +1,5 @@
 function sleep() {
-    const ms = Math.floor(Math.random() * (4000 - 1000 + 1) + 1000);
+    const ms = Math.floor(Math.random() * (1000 - 1000 + 1) + 1000);
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -15,19 +15,29 @@ async function getLogHistory() {
         {text: "User Password", link_param: "https://www.example.com/link2"},
         {text: "User Password", link_param: "https://www.example.com/link2"},
         {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "User Password", link_param: "https://www.example.com/link2"},
+        {text: "último", link_param: "https://www.example.com/link2"},
     ];
     await sleep();
     return data;
 }
 
 function renderHistory(history) {
+    const swiperWrapper = document.querySelector('.swiper-wrapper1'); // Seleciona o elemento com a classe "swiper-wrapper"
+    
     for (let index = 0; index < history.length; index += 1) {
         const currentItem = history[index];
-        const text = document.createElement('a');
-        text.innerHTML = currentItem.text;
-        text.href = currentItem.link_param;
-        text.classList.add('linkHistory');
-        logContainer.appendChild(text);
+        const slide = document.createElement('div'); // Cria um novo elemento <div> para ser um slide
+        slide.classList.add('swiper-slide'); // Adiciona a classe "swiper-slide" ao slide
+
+        const link = document.createElement('a'); // Cria um novo elemento <a> para o link
+        link.innerHTML = currentItem.text;
+        link.href = currentItem.link_param;
+        link.classList.add('linkHistory', 'skeleton');
+
+        slide.appendChild(link); // Adiciona o link dentro do slide
+        swiperWrapper.appendChild(slide); // Adiciona o slide dentro do swiper-wrapper
     }
 }
 
@@ -76,13 +86,13 @@ function renderKeyMetrics(metric){
         linkMetric.href = currentItemMetric.link_param;
 
         const textNumberNotification = document.createElement('span')
-        textNumberNotification.classList.add('numberSpan')
+        textNumberNotification.classList.add('numberSpan', 'skeletonSpanMetrics')
         textNumberNotification.innerHTML = currentItemMetric.qty
         textNumberNotification.style.background = currentItemMetric.bgcolor;
         linkMetric.appendChild(textNumberNotification)
 
         const textMetric = document.createElement('span')
-        textMetric.classList.add('textSpan')
+        textMetric.classList.add('textSpan', 'skeletonSpanMetricsText')
         textMetric.innerHTML = currentItemMetric.text;
         linkMetric.appendChild(textMetric);
 
@@ -98,9 +108,9 @@ function renderKeyMetrics(metric){
 // Atalhos
 async function getShortcuts(){
     const data = [
-        // { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Clientes', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'position': 1},
-        // { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  mudanças GMUD e mais coisas e não foi ainda', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'position': 1},
-        // { 'id': 'xxx-yyy', 'icon': './assets/plus.svg', 'text': 'Adicionar atalho', 'icon_color': '#20CA41', 'bgcolor': '#fff', 'link_param': 'google', 'position': 1}
+        { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Clientes', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'position': 1},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  mudanças GMUD e mais coisas e não foi ainda', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'position': 1},
+        { 'id': 'xxx-yyy', 'icon': './assets/plus.svg', 'text': 'Adicionar atalho', 'icon_color': '#20CA41', 'bgcolor': '#fff', 'link_param': 'google', 'position': 1}
     ]
     sleep()
     return data
@@ -120,7 +130,7 @@ function renderShortcuts(short) {
         shortcut.href = currentItemShort.link_param;
 
         const divImgShort = document.createElement('div');
-        divImgShort.classList.add('boxImg');
+        divImgShort.classList.add('boxImg', 'skeletonAtalhos');
 
         const spanBg = document.createElement('span');
         spanBg.style.backgroundColor = currentItemShort.bgcolor;
@@ -137,6 +147,7 @@ function renderShortcuts(short) {
         shortcut.appendChild(divImgShort);
 
         const textShort = document.createElement('p');
+        textShort.classList.add('skeletonAtalhosText');
         textShort.innerHTML = currentItemShort.text;
 
         shortcut.appendChild(textShort);
@@ -154,35 +165,52 @@ async function getRecentFeaturesVisits(){
         { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
         { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
         { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Solicitação de  solicitação', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Solicitação de  solicitação', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Solicitação de  solicitação', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'date': '10/05/2024 22:33'},
     ]
+    // Adicionando cards cinzas para completar cada linha
+    const maxColunas = 5; // Número máximo de colunas
+    const totalCards = data.length;
+    const cardsFaltantes = maxColunas - (totalCards % maxColunas);
+
+    for (let i = 0; i < cardsFaltantes; i++) {
+        data.push({ 'id': `grey-card-recent`});
+    }
     sleep()
     return data
 }
 
 
 function renderRecentFeaturesVisits(visits) {
+    const swiperWrapper = document.querySelector('.swiper-wrapper2');
+
     for (let index = 0; index < visits.length; index += 1) {
         const featuresVisits = visits[index];
+        const slide = document.createElement('div'); // Cria um novo elemento <div> para ser um slide
+        slide.classList.add('swiper-slide'); // Adiciona a classe "swiper-slide" ao slide
+
         const featuresVisitsCard = document.createElement('a');
-        featuresVisitsCard.classList.add('boxRecent');
+        featuresVisitsCard.classList.add('boxRecent', 'skeletonRecent');
         featuresVisitsCard.id = featuresVisits.id;
         featuresVisitsCard.href = featuresVisits.link_param;
 
         const divimg = document.createElement('div');
-        divimg.classList.add('divClients')
-        divimg.style.background = featuresVisits.bgcolor
-        const divFixarImg = document.createElement('div'); 
-
-        const img = document.createElement('img');
-        img.classList.add('imgClients');
-        img.src = featuresVisits.icon; 
+        divimg.classList.add('divClients');
+        divimg.style.background = featuresVisits.bgcolor;
 
         const imgFixar = document.createElement('img');
         imgFixar.classList.add('imgFixar');
         imgFixar.src = '../assets/fixar.svg'; 
 
-        divimg.appendChild(img);
-        divFixarImg.appendChild(imgFixar);
+        const img = document.createElement('img');
+        img.classList.add('imgClients');
+        img.src = featuresVisits.icon;
 
         const pDate = document.createElement('p');
         pDate.classList.add('date');
@@ -192,12 +220,15 @@ function renderRecentFeaturesVisits(visits) {
         ptitle.classList.add('title');
         ptitle.innerHTML = featuresVisits.text;
 
+        divimg.appendChild(img);
+        divimg.appendChild(imgFixar);
+
         featuresVisitsCard.appendChild(divimg);
-        featuresVisitsCard.appendChild(divFixarImg);
         featuresVisitsCard.appendChild(pDate);
         featuresVisitsCard.appendChild(ptitle);
 
-        recentContainer.appendChild(featuresVisitsCard)
+        slide.appendChild(featuresVisitsCard); // Adiciona o card dentro do slide
+        swiperWrapper.appendChild(slide); // Adiciona o slide dentro do swiper-wrapper específico para visitas recentes
     }
 }
 
@@ -208,17 +239,35 @@ async function getMyBoards(){
         { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
         { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
         { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        { 'id': 'xxx-yyy', 'icon': './assets/multipleMarked.svg', 'text': 'Board de Gestão de entrada e saida', 'icon_color': '#7B51E4', 'bgcolor': '#EEE9FB', 'link_param': 'google'},
+        
     ]
+
+    // Adicionando cards cinzas para completar cada linha
+    const maxColunas = 6; // Número máximo de colunas
+    const totalCards = data.length;
+    const cardsFaltantes = maxColunas - (totalCards % maxColunas);
+
+    for (let i = 0; i < cardsFaltantes; i++) {
+        data.push({ 'id': `grey-card`});
+    }
     sleep()
     return data
 }
 
 function renderMyBoards(boards){
     for (let index = 0; index < boards.length; index += 1){
-
         const myBoards = boards[index];
         const myBoardsCard = document.createElement('a');
-        myBoardsCard.classList.add('boxRecent');
+        myBoardsCard.classList.add('boxRecent', 'skeletonRecent');
         myBoardsCard.id = myBoards.id;
         myBoardsCard.href = myBoards.link_param;
 
@@ -248,6 +297,13 @@ function renderMyBoards(boards){
         
         tasksContainer.appendChild(myBoardsCard)
     }
+}
+
+function criarCardCinza() {
+    const cardCinza = document.createElement('div');
+    cardCinza.classList.add('boxRecent');
+    cardCinza.style.background = '#ccc'; // Cor cinza de fundo
+    return cardCinza;
 }
 
 async function getSearchShortcuts(){

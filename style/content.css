@@ -1,27 +1,39 @@
+:root {
+    --swiper-navigation-size: 20px;
+    --swiper-theme-color: #B8B8B8;
+}
+
 section{
     margin-bottom: 2rem;
 }
 
 .textTitle{
     margin-bottom: 20px;
-    color: #474747;
-    font-weight: 500;
-    font-size: 18px;
+    color: #222222;
+    font-weight: 400;
+    font-size: 1rem;
 }
 
 .logContainer{
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    gap: .6rem;
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
 }
 
+
+
 .logContainer a{
-    padding: 8px;
+    padding: 7px;
+    font-size: 12px;
     border: 1px solid #DADADA;
-    border-radius: 10px;
-    box-shadow: 1px 2px 2px #BFC5CF;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px #dadce0;;
     transition: .2s all;
+    display: block;
+    text-align: center;
 }
 
 .logContainer a:hover{
@@ -32,22 +44,22 @@ section{
 }
 
 .containerMetrica p, .containerMetrica{
-    margin-bottom: 1rem;
+    margin-bottom: 0px;
 }
 
 .metricContainer{
     display: flex;
     align-items: center;
-    gap: 34px;
-    margin-top: 30px;
+    gap: 13px;
+    margin-top: 5px;
     flex-wrap: wrap;
 }
 
 .metricContainer a{
     padding: 4px 8px;
     border: 1px solid #DADADA;
-    border-radius: 10px;
-    box-shadow: 1px 2px 2px #BFC5CF;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px #BFC5CF;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -65,22 +77,22 @@ section{
     padding: 6px 4px;
     border-radius: 50%;
     color: white;
-    width: 32px;
-    font-size: 15px;
-    height: 32px;
+    width: 20px;
+    font-size: 10px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .textSpan{
-    font-size: 1rem;
+    font-size: 13px;
     color: #3E3E3E;
 }
 
 .metricContainer a img{
-    width: 12px;
-    height: 20px;
+    width: 7px;
+    height: 13px;
 }
 
 
@@ -92,8 +104,8 @@ section{
 .circulatesContainer{
     display: flex;
     align-items: start;
-    gap: 34px;
-    margin-top: 20px;
+    gap: 13px;
+    margin-top: 10px;
 }
 
 .circulatesContainer .contentTop{
@@ -107,27 +119,27 @@ section{
 
 .circulatesContainer .contentTop label{
     cursor: pointer;
-    font-size: .9rem;
+    font-size: 11px;
 }
 
 .circulatesContainer .contentTop .select{
     display: flex;
     align-items: center;
-    gap: 9px;
-    width: 180px;
+    gap: 10px;
+    width: 168px;
     cursor: pointer;
-    padding: 10px 8px;
+    padding: 6px 14px;
     border: 1px solid #E6E6E6;
-    border-radius: 10px;
-    box-shadow: 0px 1px 3px #E6E6E6;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px #E6E6E6;
 }
 
 .circulatesContainer .contentTop .select img{
-    max-width: 15px;
-    height: 15px;
+    max-width: 11px;
+    height: 11px;
 }
 .circulatesContainer .contentTop .select span{
-    font-size: .9rem;
+    font-size: 12px;
 }
 
 .circulatesContainer .contentBottom{
@@ -141,8 +153,8 @@ section{
     background: #fff;
     border: 1px solid #DADADA;
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -179,8 +191,8 @@ section{
     flex-direction: column;
     text-align: center;
     position: relative;
-    margin-top: 4rem;
-    width: 126px;
+    margin-top: 40px;
+    width: 75px;
 }
 
 .boxCont .fixar{
@@ -190,11 +202,15 @@ section{
 }
 .boxCont .fixar img{
     max-width: 10px;
-    height: 15px;
+    height: 11px;
+    display: none;
+}
+.boxCont:hover .fixar img{
+    display: block;
 }
 
 .boxCont p {
-    font-size: 1rem;
+    font-size: 12px;
     color: #3E3E3E;
     margin-top: 12px;
     display: -webkit-box;
@@ -217,26 +233,50 @@ section{
     height: 25px;
 }
 
-
-.containerHistorico, .containerRecente{
-    margin: 5rem 0;
+.containerHistorico{
+    position: relative;
 }
 
-.recentContainer, .tasksContainer{
+.containerHistorico, .containerRecente{
+    position: relative;
+    margin: 2.5rem 0;
+}
+
+.containerTasks{
+    position: relative;
+}
+
+.recentContainer{
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.recentContainer{
+    position: relative;
     display: flex;
     align-items: center;
     gap: 25px;
 }
+
+.tasksContainer{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 25px;
+}
+
 .recentContainer .boxRecent, .tasksContainer .boxRecent {
     width: 100%;
     max-width: 350px;
     display: block;
-    padding: 16px 8px;
+    padding: 16px 14px;
     border: 1px solid #DADADA;
     border-radius: 10px;
     box-shadow: 1px 2px 2px #BFC5CF;
     position: relative;
     transition: all .3s;
+    font-size: 13px;
 }
 .recentContainer .boxRecent:hover, .tasksContainer .boxRecent:hover{
     border: solid 1px #0084fb;
@@ -257,18 +297,18 @@ section{
 
 .recentContainer .boxRecent div .imgFixar{
     max-width: 10px;
-    height: 15px;
+    height: 11px;
     position: absolute;
     top: 14px;
-    right: 22px;
+    right: 16px;
 }
 
 .tasksContainer  div .imgFixar{
     max-width: 10px;
-    height: 15px;
+    height: 11px;
     position: absolute;
     top: 14px;
-    right: 22px;
+    right: 16px;
 }
 
 .recentContainer .boxRecent .date{
@@ -278,7 +318,7 @@ section{
 }
 
 .recentContainer .boxRecent .title{
-    font-size: 1rem;
+    font-size: 13px;
 }
 
 .recentContainer .boxRecent .divMarked{
@@ -286,13 +326,22 @@ section{
 }
 
 @media(max-width: 1090px){
-    .recentContainer, .tasksContainer {
+    .tasksContainer{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .recentContainer {
         flex-wrap: wrap;
         justify-content: center;
+    }
+    .recentContainer {
+        max-width: 875px;
     }
 }
 
 @media(max-width: 640px){
+    .tasksContainer{
+        grid-template-columns: repeat(2, 1fr);
+    }
     .circulatesContainer .contentBottom {
         justify-content: center;
         margin-top: 4.5rem;
@@ -312,5 +361,115 @@ section{
 @media(max-width: 450px){
     .metricContainer{
         gap: 18px;
+    }
+    .tasksContainer{
+        grid-template-columns: repeat(1, 1fr);
+        place-items: center;
+    }
+    #grey-card, #grey-card-recent{
+        display: none;
+    }
+}
+
+.swiper{
+    height: 40px;
+}
+
+.swiper-button-next, .swiper-button-prev{
+    top: 64px !important;
+    color: #B8B8B8 !important;
+    background: #F5F5F5;
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 50%;
+}
+
+.swiper-button-prev{
+    left: 0;
+}
+
+.swiper-button-next{
+    right: 0 !important;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after{
+    font-size: 15px !important;
+}
+
+.swiper-horizontal {
+    padding: 0 6px !important;
+}
+
+.mySwiper2{
+    height: 133px;
+}
+
+.swiper-button-next-recent, .swiper-button-prev-recent{
+    top: 112px !important;
+}
+
+#grey-card, #grey-card-recent{
+    cursor: initial;
+    background: #F9F9F9;
+    border: none;
+    box-shadow: none;
+}
+#grey-card div, #grey-card p, #grey-card-recent div, #grey-card-recent p{
+    display: none;
+}
+
+#grey-card-recent{
+    height: 127.39px;
+}
+
+@media (max-width: 500px){
+    .swiper-button-next, .swiper-button-prev{
+        display: none !important;
+    }
+}
+
+/* Skeleton */
+.skeleton, .skeletonRecent, .skeletonSpanMetrics, .skeletonAtalhos, .skeletonAtalhosText{
+    position: relative;
+}
+.skeleton::before, .skeletonRecent::before, .skeletonSpanMetrics::before, .skeletonAtalhos::before, .skeletonAtalhosText::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 101%;
+    z-index: 10;
+    background: linear-gradient(90deg, #eee, #f9f9f9, #eee);
+    background-size: 200%;
+    animation: skeleton 1s infinite linear alternate;
+    border-radius: 6px;
+    border: 2px solid #f9f9f9;
+    display: var(--skeleton-display, block);
+}
+.skeletonAtalhos::before{
+    border-radius: 50%;
+    z-index: 100;
+    top: -1px;
+    height: 105%;
+}
+.skeleton::before{
+    top: -2px;
+    left: -1px;
+}
+.skeletonRecent::before{
+    top: -1px;
+    left: -1px;
+}
+.skeletonSpanMetrics::before{
+    border-radius: 50%;
+}
+.skeletonSpanMetricsText{
+    filter: blur(3px);
+}
+@keyframes skeleton{
+    0%{
+        background-position: -100% 0;
+    }
+    100%{
+        background-position: 100% 0;
     }
 }
