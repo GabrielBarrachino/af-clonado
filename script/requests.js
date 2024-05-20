@@ -1,7 +1,7 @@
-function sleep() {
-    const ms = Math.floor(Math.random() * (1000 - 1000 + 1) + 1000);
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+// function sleep() {
+//     const ms = Math.floor(Math.random() * (1000 - 1000 + 1) + 1000);
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
 
 
 async function getLogHistory() {
@@ -19,7 +19,7 @@ async function getLogHistory() {
         {text: "User Password", link_param: "https://www.example.com/link2"},
         {text: "último", link_param: "https://www.example.com/link2"},
     ];
-    await sleep();
+    // await sleep();
     return data;
 }
 
@@ -63,7 +63,7 @@ async function getTabs(){
     const data = [
         { 'id': 'xxx-yyy', 'text': 'Dashboard01', 'link_param': 'google'}
     ]
-    sleep()
+    // sleep()
     return data
 }
 
@@ -74,7 +74,7 @@ async function getKeyMetrics(){
         { 'id': 'xxx-yyy', 'text': 'Rascunho', 'bgcolor': '#0081FF', 'link_param': 'Github', 'qty': 0},
 
     ]
-    sleep()
+    // sleep()
     return dataMetric
 }
 
@@ -106,40 +106,57 @@ function renderKeyMetrics(metric){
 }
 
 // Atalhos
-async function getShortcuts(){
-    const data = [
-        { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Clientes', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'position': 1},
-        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  mudanças GMUD e mais coisas e não foi ainda', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'position': 1},
-        { 'id': 'xxx-yyy', 'icon': './assets/plus.svg', 'text': 'Adicionar atalho', 'icon_color': '#20CA41', 'bgcolor': '#fff', 'link_param': 'google', 'position': 1}
-    ]
-    sleep()
-    return data
+async function getShortcuts() {
+    const storedShortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+    if (storedShortcuts.length > 0) {
+        storedShortcuts.forEach(shortcut => {
+            const checkbox = document.querySelector(`input[type="checkbox"]#${shortcut.id}`);
+            if (checkbox) {
+                checkbox.checked = shortcut.checked;
+            }
+        });
+        return storedShortcuts;
+    }
+    const defaultShortcuts  = [
+        // { 'id': 'item1', 'icon': './assets/clients.svg', 'text': 'Clientes', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'position': 1, 'data-id': 'item1' },
+        // { 'id': 'item2', 'icon': './assets/clientsGreen.svg', 'text': '2', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'position': 2, 'data-id': 'item2' },
+        // { 'id': 'item3', 'icon': './assets/clientsGreen.svg', 'text': '3', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'position': 3, 'data-id': 'item3' },
+        // { 'id': 'item4', 'icon': './assets/clientsGreen.svg', 'text': '4', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'position': 4, 'data-id': 'item4' },
+        // { 'id': 'item5', 'icon': './assets/clientsGreen.svg', 'text': '5', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'position': 5, 'data-id': 'item5' },
+    ];
+    return defaultShortcuts ;
 }
 
+function saveShortcuts(shortcuts) {
+    localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+}
 
 // Selecione a div com a classe contentBottom
-const contentBottom = document.querySelector('.contentBottom');
+const contentBottom = document.getElementById('sortable-list');
+let sortable = null; // Variável para armazenar a instância do SortableJS
 
 // Defina a função renderShortcuts
-function renderShortcuts(short) {
-    for (let index = 0; index < short.length; index += 1) {
-        const currentItemShort = short[index];
+async function renderShortcuts() {
+    const shortcuts = await getShortcuts();
+    shortcuts.forEach(item => {
         const shortcut = document.createElement('a');
         shortcut.classList.add('boxCont');
-        shortcut.id = currentItemShort.id;
-        shortcut.href = currentItemShort.link_param;
+        shortcut.id = item.id;
+        shortcut.href = item.link_param;
+        shortcut.setAttribute('data-id', item['data-id']); // ou item.data-id se preferir
+        shortcut.draggable = true;
 
         const divImgShort = document.createElement('div');
         divImgShort.classList.add('boxImg', 'skeletonAtalhos');
 
         const spanBg = document.createElement('span');
-        spanBg.style.backgroundColor = currentItemShort.bgcolor;
+        spanBg.style.backgroundColor = item.bgcolor;
         spanBg.classList.add('bgSpan');
 
         const imgShort = document.createElement('img');
         imgShort.classList.add('bgImgFundo');
-        imgShort.src = currentItemShort.icon;
-        imgShort.alt = currentItemShort.text;
+        imgShort.src = item.icon;
+        imgShort.alt = item.text;
 
         divImgShort.appendChild(spanBg);
         divImgShort.appendChild(imgShort);
@@ -148,14 +165,68 @@ function renderShortcuts(short) {
 
         const textShort = document.createElement('p');
         textShort.classList.add('skeletonAtalhosText');
-        textShort.innerHTML = currentItemShort.text;
+        textShort.innerHTML = item.text;
 
         shortcut.appendChild(textShort);
 
         // Adicione o atalho criado dentro da div contentBottom
         contentBottom.appendChild(shortcut);
+    });
+
+    // Carregar a ordem dos atalhos
+    loadOrder();
+}
+
+// Função para salvar a ordem no localStorage
+function saveOrder() {
+    const items = Array.from(contentBottom.children);
+    const order = items.map(item => item.getAttribute('data-id'));
+    localStorage.setItem('sortable-order', JSON.stringify(order));
+}
+
+// Função para carregar a ordem do localStorage
+function loadOrder() {
+    const order = JSON.parse(localStorage.getItem('sortable-order'));
+    if (order) {
+        order.forEach(id => {
+            const item = contentBottom.querySelector(`.boxCont[data-id='${id}']`);
+            if (item) {
+                contentBottom.appendChild(item);
+            }
+        });
     }
 }
+
+// Função para inicializar o SortableJS
+function enableSortable() {
+    sortable = new Sortable(contentBottom, {
+        animation: 150,
+        onEnd: function(evt) {
+            saveOrder();
+        },
+    });
+}
+
+// Função para desabilitar o SortableJS
+function disableSortable() {
+    if (sortable) {
+        sortable.destroy();
+        sortable = null;
+    }
+}
+
+// Event listener para o checkbox
+const ordenacaoCheckbox = document.getElementById('ordenacao');
+ordenacaoCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+        enableSortable();
+    } else {
+        disableSortable();
+    }
+});
+
+// Carregar a ordem dos atalhos e renderizar os atalhos
+loadOrder();
 
 
 // Opções visitadas recentemente
@@ -182,10 +253,44 @@ async function getRecentFeaturesVisits(){
     for (let i = 0; i < cardsFaltantes; i++) {
         data.push({ 'id': `grey-card-recent`});
     }
-    sleep()
+    // Gera IDs únicos para cada objeto
+    data.forEach((item, index) => {
+        if (!item.id || item.id === 'xxx-yyy') { // Se o ID for undefined ou padrão
+            item.id = `unique-id-${index}`; // Gere um ID único baseado no índice
+        }
+    });
+    // sleep()
     return data
 }
 
+function addShortcutFromCard(cardInfo) {
+    const shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+    const newItem = {
+        id: cardInfo.id,
+        icon: cardInfo.icon,
+        text: cardInfo.text,
+        icon_color: cardInfo.icon_color,
+        bgcolor: cardInfo.bgcolor,
+        link_param: cardInfo.link_param,
+        position: shortcuts.length + 1, // Ajuste conforme necessário
+        data_id: cardInfo.id
+    };
+    shortcuts.push(newItem);
+    localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+
+    const shortcutElement = createShortcutElement(newItem);
+    contentBottom.appendChild(shortcutElement);
+
+    // Remova a classe de esqueleto após adicionar o atalho
+    const skeletonElements = document.querySelectorAll('.boxCont[data-loaded="false"]');
+    skeletonElements.forEach(element => {
+        element.setAttribute('data-loaded', 'true');
+    });
+
+    // Salve a ordem e o estado dos atalhos
+    saveOrder();
+    saveShortcutState(cardInfo.id, true);
+}
 
 function renderRecentFeaturesVisits(visits) {
     const swiperWrapper = document.querySelector('.swiper-wrapper2');
@@ -206,7 +311,11 @@ function renderRecentFeaturesVisits(visits) {
 
         const imgFixar = document.createElement('img');
         imgFixar.classList.add('imgFixar');
-        imgFixar.src = '../assets/fixar.svg'; 
+        imgFixar.src = '../assets/fixar.svg';
+        imgFixar.addEventListener('click', (event) => {
+            event.preventDefault();
+            addShortcutFromCard(featuresVisits);
+        });
 
         const img = document.createElement('img');
         img.classList.add('imgClients');
@@ -259,31 +368,34 @@ async function getMyBoards(){
     for (let i = 0; i < cardsFaltantes; i++) {
         data.push({ 'id': `grey-card`});
     }
-    sleep()
+    // sleep()
     return data
 }
 
 function renderMyBoards(boards){
-    for (let index = 0; index < boards.length; index += 1){
+    for (let index = 0; index < boards.length; index += 1) {
         const myBoards = boards[index];
         const myBoardsCard = document.createElement('a');
         myBoardsCard.classList.add('boxRecent', 'skeletonRecent');
         myBoardsCard.id = myBoards.id;
         myBoardsCard.href = myBoards.link_param;
 
-        const divFixarImg = document.createElement('div'); 
+        const divFixarImg = document.createElement('div');
         const divimg = document.createElement('div');
         divimg.classList.add('divMarked')
         divimg.style.background = myBoards.bgcolor
 
-
         const imgFixar = document.createElement('img');
         imgFixar.classList.add('imgFixar');
-        imgFixar.src = '../assets/fixar.svg'; 
+        imgFixar.src = '../assets/fixar.svg';
+        imgFixar.addEventListener('click', (event) => {
+            event.preventDefault()
+            addShortcutFromCard(myBoards); 
+        });
 
         const img = document.createElement('img');
         img.classList.add('imgClients');
-        img.src = myBoards.icon; 
+        img.src = myBoards.icon;
 
         const textBoards = document.createElement('p');
         textBoards.innerHTML = myBoards.text;
@@ -294,7 +406,7 @@ function renderMyBoards(boards){
         myBoardsCard.appendChild(divimg)
         myBoardsCard.appendChild(divFixarImg)
         myBoardsCard.appendChild(textBoards)
-        
+
         tasksContainer.appendChild(myBoardsCard)
     }
 }
@@ -320,23 +432,162 @@ async function getSearchShortcuts(){
             }
         ]}
     ]
-    sleep()
+    // sleep()
     return data
 }
 
-async function getAddShortcut(){
+async function getAddShortcut(id) {
+    const checkbox = document.querySelector(`input[type="checkbox"]#${id}`);
+    const label = checkbox.closest('label');
+    const span = label.querySelector('span');
+    const text = span.textContent.trim();
+    const icon = './assets/clients.svg'; // Ajuste conforme necessário
+
     const data = [
-        { 'id': 'xxx-yyy'}
-    ]
-    sleep()
-    return data
+        { 'id': id, 'icon': icon, 'text': text, 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'position': 6, 'data-id': id }
+    ];
+    // await sleep();
+    return data;
+}
+
+// Função para renderizar atalhos
+async function renderShortcuts() {
+    const shortcuts = await getShortcuts();
+    shortcuts.forEach(item => {
+        const shortcut = createShortcutElement(item);
+        contentBottom.appendChild(shortcut);
+    });
+
+    loadOrder();
+    applySkeletonClasses();
+}
+
+// Função para remover as classes de esqueleto
+function removeSkeletonClasses() {
+    const skeletonElements = document.querySelectorAll('.skeletonAtalhos, .skeletonAtalhosText');
+    skeletonElements.forEach(element => {
+        element.classList.remove('skeletonAtalhos', 'skeletonAtalhosText');
+    });
+}
+
+// Função para aplicar as classes de esqueleto aos atalhos
+function applySkeletonClasses() {
+    const skeletonElements = document.querySelectorAll('.boxCont:not([data-loaded="true"]) .skeletonAtalhos, .boxCont:not([data-loaded="true"]) .skeletonAtalhosText');
+    skeletonElements.forEach(element => {
+        element.classList.add('skeletonAtalhos', 'skeletonAtalhosText');
+    });
+}
+
+// Função para criar um elemento de atalho
+function createShortcutElement(item) {
+    const shortcut = document.createElement('a');
+    shortcut.classList.add('boxCont');
+    shortcut.id = item.id;
+    shortcut.href = item.link_param;
+    shortcut.setAttribute('data-id', item['data-id']);
+    shortcut.draggable = true;
+
+    const divImgShort = document.createElement('div');
+    divImgShort.classList.add('boxImg', 'skeletonAtalhos');
+
+    const spanBg = document.createElement('span');
+    spanBg.style.backgroundColor = item.bgcolor;
+    spanBg.classList.add('bgSpan');
+
+    const imgShort = document.createElement('img');
+    imgShort.classList.add('bgImgFundo');
+    imgShort.src = item.icon;
+    imgShort.alt = item.text;
+
+    divImgShort.appendChild(spanBg);
+    divImgShort.appendChild(imgShort);
+
+    shortcut.appendChild(divImgShort);
+
+    const textShort = document.createElement('p');
+    textShort.classList.add('skeletonAtalhosText');
+    textShort.innerHTML = item.text;
+
+    shortcut.appendChild(textShort);
+
+    return shortcut;
+}
+
+// Função para adicionar um novo atalho
+async function addShortcut(id) {
+    const newShortcuts = await getAddShortcut(id);
+    const shortcuts = await getShortcuts();
+    newShortcuts.forEach(item => {
+        item.checked = true; // Marca o novo atalho como checked
+        shortcuts.push(item);
+        const shortcut = createShortcutElement(item);
+        contentBottom.appendChild(shortcut);
+    });
+
+    removeSkeletonClasses();
+    saveShortcuts(shortcuts);
+    saveOrder();
+    saveShortcutState(id, true);
+}
+
+// Função para remover um atalho
+function removeShortcut(id) {
+    let shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+    shortcuts = shortcuts.filter(item => item.id !== id);
+    localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+    
+    const shortcut = document.querySelector(`.boxCont#${id}`);
+    if (shortcut) {
+        shortcut.remove();
+    }
+
+    saveOrder();
+    saveShortcutState(id, false);
+}
+
+// Adicionar eventos de clique aos checkboxes no modal
+document.querySelectorAll('.modal input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            addShortcut(this.id);
+        } else {
+            removeShortcut(this.id);
+        }
+    });
+});
+
+document.querySelectorAll('.boxCont input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            addShortcut(this.id);
+        } else {
+            removeShortcut(this.id);
+        }
+    });
+});
+
+// Função para salvar o estado dos atalhos no localStorage
+function saveShortcutState(id, checked) {
+    const shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+    const shortcutToUpdate = shortcuts.find(shortcut => shortcut.id === id);
+    if (shortcutToUpdate) {
+        shortcutToUpdate.checked = checked;
+        localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+    }
+}
+
+// Função para salvar a ordem no localStorage
+function saveOrder() {
+    const items = Array.from(contentBottom.children);
+    const order = items.map(item => item.getAttribute('data-id'));
+    localStorage.setItem('sortable-order', JSON.stringify(order));
 }
 
 async function getRemoveShortcut(){
     const data = [
         { 'id': 'xxx-yyy'}
     ]
-    sleep()
+    // sleep()
     return data
 }
  
@@ -344,6 +595,6 @@ async function getSavesShortcutSorting(){
     const data = [
         { 'id': 'xxx-yyy', 'position': 1}
     ]
-    sleep()
+    // sleep()
     return data
 }

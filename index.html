@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/header.css">
     <link rel="stylesheet" href="style/content.css">
+    <link rel="stylesheet" href="style/modal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>AF</title>
 </head>
 <body>
@@ -75,59 +77,31 @@
                         <input type="checkbox" name="ordenacao" id="ordenacao">
                         <span>Habilitar ordenação</span>
                     </label>
-                    <div class="select">
+                    <div class="select" data-js="open-modal">
                         <img src="./assets/fixar.svg" alt="">
                         <span>Adicionar Atalhos</span>
                         <img src="./assets/arrowDown.svg" alt="">
                     </div>
                 </div>
-                <div class="contentBottom">
-                    <a href="" class="boxCont">
-                        <div class="fixar">
-                            <img src="./assets/fixar.svg" alt="">
-                        </div>
-                        <div class="boxImg">
-                            <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
-                            <img src="assets/inbox.svg" alt="Imagem caixa">
-                        </div>
-                        <p>Caixa de Entrada</p>
-                    </a>
-                    <!-- <a href="" class="boxCont">
-                        <div class="fixar">
-                            <img src="./assets/fixar.svg" alt="">
-                        </div>
-                        <div class="boxImg">
-                            <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
-                            <img src="assets/clients.svg" alt="Imagem caixa">
-                        </div>
-                        <p>Clientes</p>
-                    </a>
-                    <a href="" class="boxCont">
-                        <div class="fixar">
-                            <img src="./assets/fixar.svg" alt="">
-                        </div>
-                        <div class="boxImg">
-                            <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
-                            <img src="assets/time.svg" alt="Imagem caixa">
-                        </div>
-                        <p>Agendador</p>
-                    </a>
-                    <a href="" class="boxCont">
-                        <div class="fixar">
-                            <img src="./assets/fixar.svg" alt="">
-                        </div>
-                        <div class="boxImg">
-                            <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
-                            <img src="assets/clients.svg" alt="Imagem caixa">
-                        </div>
-                        <p>Clientes</p>
-                    </a> -->
-                    <!-- <a href="#" class="boxCont">
+                <div class="containerBottom">
+                    <div class="contentBottom" id="sortable-list">
+                        <a href="#" class="boxCont" data-id="item0">
+                            <div class="fixar">
+                                <img src="./assets/fixar.svg" alt="">
+                            </div>
+                            <div class="boxImg">
+                                <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
+                                <img src="assets/inbox.svg" alt="Imagem caixa">
+                            </div>
+                            <p>Caixa de Entrada</p>
+                        </a>
+                    </div>
+                    <a href="#" class="boxCont" data-js="open-modal">
                         <div class="boxImg boxContAdd">
                             <img src="assets/plus.svg" alt="Imagem caixa">
                         </div>
                         <p class="textAdd">Adicionar atalhos</p>
-                    </a> -->
+                    </a>
                 </div>
             </div>
         </div>
@@ -160,8 +134,136 @@
         </div>
     </section>
 
+    <div class="modal" data-js="modal">
+        <div class="overlay" data-js="overlay"></div>
+        <div class="containerModal">
+            <div class="contentTop">
+                <div class="contentFlex">
+                    <div class="select" data-js="open-modal">
+                        <img src="./assets/fixar.svg" alt="">
+                        <span>Atalhos</span>
+                    </div>
+                    <button data-js="close-modal"><i class='bx bx-x'></i></button>
+                </div>
+                <div class="searchContainer">
+                    <input type="text" id="inputModal" placeholder="Pesquise...">
+                    <i class='bx bx-search-alt-2' style='color:#c9c9c9'></i>
+                </div>
+            </div>
+            <div class="mainContent">
+                <h4>OPÇÕES</h4>
+                <div class="checkContent">
+                    <label for="scheduler">
+                        <input type="checkbox" id="scheduler">
+                        <span>_Teste Scheduler.</span>
+                    </label>
+                    <div class="checkBox">
+                        <div class="boxLabel">
+                            <label for="request">
+                                <input type="checkbox" id="request">
+                                <span>Change Request</span>
+                            </label>
+                            <img src="/assets/arrowRight.svg" alt="">
+                        </div>
+                    </div>
+                    <label for="client">
+                        <input type="checkbox" id="client">
+                        <span>Cliente</span>
+                    </label>
+                    <label for="consultorias">
+                        <input type="checkbox" id="consultorias">
+                        <span>Consultorias</span>
+                    </label>
+                    <label for="contrato">
+                        <input type="checkbox" id="contrato">
+                        <span>Contrato</span>
+                    </label>
+                    <div class="checkBox" data-js="openSubMenu">
+                        <div class="boxLabel">
+                            <label for="dados">
+                                <input type="checkbox" id="dados">
+                                <span>Dados mestres</span>
+                            </label>
+                            <img src="/assets/arrowRight.svg" alt="" data-js="imgArrow">
+                        </div>
+                        <div class="subMenu" data-js="subMenu">
+                            <label for="cliente">
+                                <input type="checkbox" id="cliente">
+                                <span>Cliente</span>
+                            </label>
+                            <label for="system">
+                                <input type="checkbox" id="system">
+                                <span>System Versions</span>
+                            </label>
+                            <label for="cobranca">
+                                <input type="checkbox" id="cobranca">
+                                <span>Envio de Cobrança</span>
+                            </label>
+                        </div>
+                    </div>
+                    <label for="funil">
+                        <input type="checkbox" id="funil">
+                        <span>Funil de apresentações</span>
+                    </label>
+                    <label for="lead">
+                        <input type="checkbox" id="lead">
+                        <span>Lead site</span>
+                    </label>
+                    <div class="checkBox">
+                        <div class="boxLabel">
+                            <label for="misc">
+                                <input type="checkbox" id="misc">
+                                <span>Misc</span>
+                            </label>
+                            <img src="/assets/arrowRight.svg" alt="">
+                        </div>
+                    </div>
+                    <label for="oportunidade">
+                        <input type="checkbox" id="oportunidade">
+                        <span>Oportunidade</span>
+                    </label>
+                    <label for="plano">
+                        <input type="checkbox" id="plano">
+                        <span>Plano</span>
+                    </label>
+                    <label for="platform">
+                        <input type="checkbox" id="platform">
+                        <span>Plataforma Instalada</span>
+                    </label>
+                    <label for="proposta">
+                        <input type="checkbox" id="proposta">
+                        <span>Proposta</span>
+                    </label>
+                    <div class="checkBox">
+                        <div class="boxLabel">
+                            <label for="report">
+                                <input type="checkbox" id="report">
+                                <span>Report</span>
+                            </label>
+                            <img src="/assets/arrowRight.svg" alt="">
+                        </div>
+                    </div>
+                    <label for="uppercase">
+                        <input type="checkbox" id="uppercase">
+                        <span>Uppercase teste</span>
+                    </label>
+                    <label for="uppercase">
+                        <input type="checkbox" id="uppercase">
+                        <span>Uppercase teste</span>
+                    </label>
+                    <label for="uppercase">
+                        <input type="checkbox" id="uppercase">
+                        <span>Uppercase teste</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script/requests.js"></script>
+    <script src="script/modal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
     <script>
         window.addEventListener('load', function() {

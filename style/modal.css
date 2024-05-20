@@ -1,0 +1,132 @@
+.modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s;
+}
+
+.modal, .modal .overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.modal .overlay{
+    background-color: rgba(242, 242, 242, 0.685);
+    z-index: 0;
+}
+
+.modal .containerModal{
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 40rem;
+    height: max-content;
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    /* display: flex; */
+}
+
+.modal .containerModal .contentTop .contentFlex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.modal .containerModal .contentTop .contentFlex .select{
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+}
+.modal .containerModal .contentTop .contentFlex button{
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.modal .containerModal .contentTop .searchContainer{
+    margin: 1.5rem 0;
+    position: relative;
+}
+.modal .containerModal .contentTop .searchContainer input{
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #C9C9C9;
+    border-radius: 5px;
+    font-size: .9rem;
+    outline: none;
+}
+.modal .containerModal .contentTop .searchContainer input::placeholder{
+    color: #C9C9C9;
+}
+.modal .containerModal .contentTop .searchContainer i{
+    color: #c9c9c9;
+    position: absolute;
+    top: 12px;
+    right: 9px;
+    font-size: 1.5rem;
+}
+
+.modal.show{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal .containerModal .mainContent h4{
+    color: #b3b2b2;
+    font-weight: 400;
+    margin-bottom: .8rem;
+}
+
+.checkContent{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.checkContent .checkBox .boxLabel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.checkContent label input{
+    margin-right: .6rem;
+}
+.checkContent .checkBox img{
+    width: 15px;
+    height: 15px;
+}
+
+label{
+    cursor: pointer;
+}
+label span{
+    font-size: 14px;
+}
+
+.subMenu{
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 1rem;
+    gap: 10px;
+    background: #f9f9f9;
+    padding: 8px;
+}
+
+.subMenu.active{
+    display: flex;
+}
+.checkContent .checkBox img.rotated{
+    transform: rotate(90deg);
+}
