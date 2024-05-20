@@ -232,11 +232,11 @@ loadOrder();
 // Opções visitadas recentemente
 async function getRecentFeaturesVisits(){
     const data = [
-        { 'id': 'xxx-yyy', 'icon': './assets/clients.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'date': '10/05/2024 22:33'},
-        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
-        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
-        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
-        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'testeeee', 'icon': './assets/clients.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'card2', 'icon': './assets/time.svg', 'text': 'Cadastro de clientes', 'icon_color': '#20CA41', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Outras opções', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/homeGreen.svg', 'text': 'Solicitação de  mudanças GMUD 0012', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
+        { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação com nome bem grande', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
         { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
         { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
         { 'id': 'xxx-yyy', 'icon': './assets/clientsGreen.svg', 'text': 'Solicitação de  reembolso', 'icon_color': '#20CA41', 'bgcolor': '#E2F8E6', 'link_param': 'google', 'date': '10/05/2024 22:33'},
@@ -272,8 +272,8 @@ function addShortcutFromCard(cardInfo) {
         icon_color: cardInfo.icon_color,
         bgcolor: cardInfo.bgcolor,
         link_param: cardInfo.link_param,
-        position: shortcuts.length + 1, // Ajuste conforme necessário
-        data_id: cardInfo.id
+        position: shortcuts.length + 1,
+        'data-id': cardInfo.id
     };
     shortcuts.push(newItem);
     localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
@@ -281,15 +281,7 @@ function addShortcutFromCard(cardInfo) {
     const shortcutElement = createShortcutElement(newItem);
     contentBottom.appendChild(shortcutElement);
 
-    // Remova a classe de esqueleto após adicionar o atalho
-    const skeletonElements = document.querySelectorAll('.boxCont[data-loaded="false"]');
-    skeletonElements.forEach(element => {
-        element.setAttribute('data-loaded', 'true');
-    });
-
-    // Salve a ordem e o estado dos atalhos
     saveOrder();
-    saveShortcutState(cardInfo.id, true);
 }
 
 function renderRecentFeaturesVisits(visits) {
@@ -459,7 +451,7 @@ async function renderShortcuts() {
     });
 
     loadOrder();
-    applySkeletonClasses();
+    removeSkeletonClasses();
 }
 
 // Função para remover as classes de esqueleto
@@ -509,6 +501,10 @@ function createShortcutElement(item) {
     textShort.innerHTML = item.text;
 
     shortcut.appendChild(textShort);
+
+    // Remova a classe de esqueleto imediatamente após criar o atalho
+    divImgShort.classList.remove('skeletonAtalhos');
+    textShort.classList.remove('skeletonAtalhosText');
 
     return shortcut;
 }
@@ -574,13 +570,6 @@ function saveShortcutState(id, checked) {
         shortcutToUpdate.checked = checked;
         localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
     }
-}
-
-// Função para salvar a ordem no localStorage
-function saveOrder() {
-    const items = Array.from(contentBottom.children);
-    const order = items.map(item => item.getAttribute('data-id'));
-    localStorage.setItem('sortable-order', JSON.stringify(order));
 }
 
 async function getRemoveShortcut(){

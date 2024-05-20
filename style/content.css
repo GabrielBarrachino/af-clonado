@@ -276,6 +276,7 @@ section{
 .recentContainer .boxRecent, .tasksContainer .boxRecent {
     width: 100%;
     max-width: 350px;
+    height: 96%;
     display: block;
     padding: 16px 14px;
     border: 1px solid #DADADA;
@@ -408,7 +409,7 @@ section{
 }
 
 .mySwiper2{
-    height: 133px;
+    height: 140px;
 }
 
 .swiper-button-next-recent, .swiper-button-prev-recent{
@@ -439,7 +440,7 @@ section{
 .skeleton, .skeletonRecent, .skeletonSpanMetrics, .skeletonAtalhos, .skeletonAtalhosText{
     position: relative;
 }
-/* .skeleton::before, .skeletonRecent::before, .skeletonSpanMetrics::before, .skeletonAtalhos::before, .skeletonAtalhosText::before{
+.skeleton::before, .skeletonRecent::before, .skeletonSpanMetrics::before, .skeletonAtalhos::before, .skeletonAtalhosText::before{
     content: "";
     position: absolute;
     width: 100%;
@@ -451,7 +452,7 @@ section{
     border-radius: 6px;
     border: 2px solid #f9f9f9;
     display: var(--skeleton-display, block);
-} */
+}
 .skeletonAtalhos::before{
     /* border-radius: 50%; */
     z-index: 100;
