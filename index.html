@@ -96,12 +96,6 @@
                             <p>Caixa de Entrada</p>
                         </a>
                     </div>
-                    <a href="#" class="boxCont" data-js="open-modal">
-                        <div class="boxImg boxContAdd">
-                            <img src="assets/plus.svg" alt="Imagem caixa">
-                        </div>
-                        <p class="textAdd">Adicionar atalhos</p>
-                    </a>
                 </div>
             </div>
         </div>
@@ -128,7 +122,26 @@
             <div class="swiper-button-prev swiper-button-prev-recent"></div>
         </div>
         <div class="containerTasks">
-            <p class="textTitle">Meus quadros de tarefas:</p>
+            <div class="contentTop">
+                <p class="textTitle">Meus quadros de tarefas:</p>
+                <div class="plusButton">
+                    <img src="./assets/plus.svg" alt="">
+                </div>
+                <div class="contentTags">
+                    <div class="tag">
+                        <p>Minhas Tarefas</p>
+                        <img src="./assets/arrowRight.svg" alt="">
+                    </div>
+                    <div class="tag">
+                        <p>Tarefas em andamento</p>
+                        <img src="./assets/arrowRight.svg" alt="">
+                    </div>
+                    <div class="tag">
+                        <p>Tarefas por responsável</p>
+                        <img src="./assets/arrowRight.svg" alt="">
+                    </div>
+                </div>
+            </div>
             <div id="tasksContainer" class="tasksContainer">
             </div>
         </div>
@@ -160,7 +173,6 @@
                     <div class="checkBox">
                         <div class="boxLabel">
                             <label for="request">
-                                <input type="checkbox" id="request">
                                 <span>Change Request</span>
                             </label>
                             <img src="/assets/arrowRight.svg" alt="">
@@ -181,7 +193,6 @@
                     <div class="checkBox" data-js="openSubMenu">
                         <div class="boxLabel">
                             <label for="dados">
-                                <input type="checkbox" id="dados">
                                 <span>Dados mestres</span>
                             </label>
                             <img src="/assets/arrowRight.svg" alt="" data-js="imgArrow">
@@ -212,7 +223,6 @@
                     <div class="checkBox">
                         <div class="boxLabel">
                             <label for="misc">
-                                <input type="checkbox" id="misc">
                                 <span>Misc</span>
                             </label>
                             <img src="/assets/arrowRight.svg" alt="">
@@ -237,24 +247,11 @@
                     <div class="checkBox">
                         <div class="boxLabel">
                             <label for="report">
-                                <input type="checkbox" id="report">
                                 <span>Report</span>
                             </label>
                             <img src="/assets/arrowRight.svg" alt="">
                         </div>
                     </div>
-                    <label for="uppercase">
-                        <input type="checkbox" id="uppercase">
-                        <span>Uppercase teste</span>
-                    </label>
-                    <label for="uppercase">
-                        <input type="checkbox" id="uppercase">
-                        <span>Uppercase teste</span>
-                    </label>
-                    <label for="uppercase">
-                        <input type="checkbox" id="uppercase">
-                        <span>Uppercase teste</span>
-                    </label>
                 </div>
             </div>
         </div>

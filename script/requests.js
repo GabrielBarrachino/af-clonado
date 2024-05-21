@@ -1,9 +1,3 @@
-// function sleep() {
-//     const ms = Math.floor(Math.random() * (1000 - 1000 + 1) + 1000);
-//     return new Promise(resolve => setTimeout(resolve, ms));
-// }
-
-
 async function getLogHistory() {
     const data = [
         { text: "Contact New", link_param: "https://www.youtube.com"},
@@ -19,7 +13,6 @@ async function getLogHistory() {
         {text: "User Password", link_param: "https://www.example.com/link2"},
         {text: "último", link_param: "https://www.example.com/link2"},
     ];
-    // await sleep();
     return data;
 }
 
@@ -63,7 +56,7 @@ async function getTabs(){
     const data = [
         { 'id': 'xxx-yyy', 'text': 'Dashboard01', 'link_param': 'google'}
     ]
-    // sleep()
+
     return data
 }
 
@@ -74,7 +67,7 @@ async function getKeyMetrics(){
         { 'id': 'xxx-yyy', 'text': 'Rascunho', 'bgcolor': '#0081FF', 'link_param': 'Github', 'qty': 0},
 
     ]
-    // sleep()
+
     return dataMetric
 }
 
@@ -138,12 +131,14 @@ let sortable = null; // Variável para armazenar a instância do SortableJS
 // Defina a função renderShortcuts
 async function renderShortcuts() {
     const shortcuts = await getShortcuts();
+    const contentBottom = document.getElementById('sortable-list');
+
     shortcuts.forEach(item => {
         const shortcut = document.createElement('a');
         shortcut.classList.add('boxCont');
         shortcut.id = item.id;
         shortcut.href = item.link_param;
-        shortcut.setAttribute('data-id', item['data-id']); // ou item.data-id se preferir
+        shortcut.setAttribute('data-id', item['data-id']); 
         shortcut.draggable = true;
 
         const divImgShort = document.createElement('div');
@@ -169,13 +164,39 @@ async function renderShortcuts() {
 
         shortcut.appendChild(textShort);
 
-        // Adicione o atalho criado dentro da div contentBottom
         contentBottom.appendChild(shortcut);
     });
 
     // Carregar a ordem dos atalhos
     loadOrder();
 }
+
+function addAddShortcutButton() {
+    const addShortcut = document.createElement('a');
+    addShortcut.href = '#';
+    addShortcut.classList.add('boxCont', 'btnAddShortcuts');
+    addShortcut.setAttribute('data-js', 'open-modal');
+    
+    const divImgAdd = document.createElement('div');
+    divImgAdd.classList.add('boxImg', 'boxContAdd');
+    
+    const imgAdd = document.createElement('img');
+    imgAdd.src = 'assets/plus.svg';
+    imgAdd.alt = 'Imagem caixa';
+    
+    divImgAdd.appendChild(imgAdd);
+    
+    addShortcut.appendChild(divImgAdd);
+    
+    const textAdd = document.createElement('p');
+    textAdd.classList.add('textAdd');
+    textAdd.textContent = 'Adicionar atalhos';
+    
+    addShortcut.appendChild(textAdd);
+    
+    contentBottom.appendChild(addShortcut);
+}
+
 
 // Função para salvar a ordem no localStorage
 function saveOrder() {
@@ -259,7 +280,7 @@ async function getRecentFeaturesVisits(){
             item.id = `unique-id-${index}`; // Gere um ID único baseado no índice
         }
     });
-    // sleep()
+
     return data
 }
 
@@ -360,7 +381,7 @@ async function getMyBoards(){
     for (let i = 0; i < cardsFaltantes; i++) {
         data.push({ 'id': `grey-card`});
     }
-    // sleep()
+
     return data
 }
 
@@ -424,7 +445,7 @@ async function getSearchShortcuts(){
             }
         ]}
     ]
-    // sleep()
+
     return data
 }
 
@@ -438,13 +459,14 @@ async function getAddShortcut(id) {
     const data = [
         { 'id': id, 'icon': icon, 'text': text, 'icon_color': '#0281FF', 'bgcolor': '#E8F6FF', 'link_param': 'google', 'position': 6, 'data-id': id }
     ];
-    // await sleep();
     return data;
 }
 
 // Função para renderizar atalhos
 async function renderShortcuts() {
     const shortcuts = await getShortcuts();
+    const contentBottom = document.getElementById('sortable-list');
+
     shortcuts.forEach(item => {
         const shortcut = createShortcutElement(item);
         contentBottom.appendChild(shortcut);
@@ -454,6 +476,7 @@ async function renderShortcuts() {
     removeSkeletonClasses();
 }
 
+addAddShortcutButton(); 
 // Função para remover as classes de esqueleto
 function removeSkeletonClasses() {
     const skeletonElements = document.querySelectorAll('.skeletonAtalhos, .skeletonAtalhosText');
@@ -576,7 +599,7 @@ async function getRemoveShortcut(){
     const data = [
         { 'id': 'xxx-yyy'}
     ]
-    // sleep()
+
     return data
 }
  
@@ -584,6 +607,6 @@ async function getSavesShortcutSorting(){
     const data = [
         { 'id': 'xxx-yyy', 'position': 1}
     ]
-    // sleep()
+
     return data
 }
