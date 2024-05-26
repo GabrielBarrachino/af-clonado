@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>AF</title>
 </head>
+
 <body>
     <header class="container headerContainer">
         <nav>
@@ -66,12 +68,18 @@
         </div>
     </div>
 
-    <section class="container">
-        <div class="containerMetrica">
-            <div id="metricContainer" class="metricContainer"></div>
+    <section>
+        <div class="containerMetrica container">
+            <div id="metricContainer" class="metricContainer">
+                <div class="metric-skeleton">
+                    <div class="skeleton"></div>
+                    <div class="skeleton"></div>
+                </div>
+            </div>
         </div>
-        <div class="containerCirculates">  
-            <div id="circulatesContainer" class="circulatesContainer">
+
+        <div class="containerCirculates">
+            <div id="circulatesContainer" class="circulatesContainer container" style="overflow: hidden;">
                 <div class="contentTop">
                     <label for="ordenacao">
                         <input type="checkbox" name="ordenacao" id="ordenacao">
@@ -83,66 +91,122 @@
                         <img src="./assets/arrowDown.svg" alt="">
                     </div>
                 </div>
-                <div class="containerBottom">
-                    <div class="contentBottom" id="sortable-list">
-                        <a href="#" class="boxCont" data-id="item0">
-                            <div class="fixar">
-                                <img src="./assets/fixar.svg" alt="">
+
+                <div class="containerSwiperSlide">
+                    <swiper-container class="shortcutSwiper" init="false">
+                        <div class="shortcut-skeleton">
+                            <div class="skeleton">
+                                <div class="skeletonCircle"></div>
+                                <div class="skeletonText"></div>
                             </div>
-                            <div class="boxImg">
-                                <span class="bgSpan" style="background-color: rgb(232, 246, 255);"></span>
-                                <img src="assets/inbox.svg" alt="Imagem caixa">
+                            <div class="skeleton">
+                                <div class="skeletonCircle"></div>
+                                <div class="skeletonText"></div>
                             </div>
-                            <p>Caixa de Entrada</p>
-                        </a>
-                    </div>
+                            <div class="skeleton">
+                                <div class="skeletonCircle"></div>
+                                <div class="skeletonText"></div>
+                            </div>
+                            <div class="skeleton">
+                                <div class="skeletonCircle"></div>
+                                <div class="skeletonText"></div>
+                            </div>
+                            <div class="skeleton displayNoneSkeletonShortcut650">
+                                <div class="skeletonCircle"></div>
+                                <div class="skeletonText"></div>
+                            </div>
+                            <div class="skeleton displayNoneSkeletonShortcut650">
+                                <div class="skeletonCircle"></div>
+                                <div class="skeletonText"></div>
+                            </div>
+                            <div class="skeleton displayNoneSkeletonShortcut650">
+                                <div class="skeletonCircle"></div>
+                                <div class="skeletonText"></div>
+                            </div>
+                            <div class="skeleton displayNoneSkeletonShortcut650">
+                                <div class="skeletonCircle"></div>
+                                <div class="skeletonText"></div>
+                            </div>
+                        </div>
+                    </swiper-container>
+                    <div class="swiper-button-next swiper-button-next-circulate"></div>
+                    <div class="swiper-button-prev swiper-button-prev-circulate"></div>
                 </div>
+
+
+                <ul class="sortable-list sortable-list-hidden" id="sortable-list"></ul>
             </div>
-        </div>
-        <div class="containerHistorico">
-            <p class="textTitle">Histórico:</p>
-            <div id="logContainer" class="logContainer">
-                <div class="swiper mySwiper mySwiper1">
-                    <div class="swiper-wrapper swiper-wrapper1">
+
+            <div class="container">
+                <div class="containerHistorico">
+                    <p class="textTitle">Histórico:</p>
+                    <div id="logContainer" class="logContainer">
+                        <div class="swiper mySwiper mySwiper1">
+                            <div class="swiper-wrapper swiper-wrapper1">
+                                <div class="history-skeleton">
+                                    <div class="skeleton"></div>
+                                    <div class="skeleton displayNoneSkeleton400"></div>
+                                    <div class="skeleton displayNoneSkeleton500"></div>
+                                    <div class="skeleton displayNoneSkeleton630"></div>
+                                    <div class="skeleton displayNoneSkeleton770"></div>
+                                    <div class="skeleton displayNoneSkeleton770"></div>
+                                    <div class="skeleton displayNoneSkeleton770"></div>
+                                    <div class="skeleton displayNoneSkeleton770"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next swiper-button-next-history"></div>
+                    <div class="swiper-button-prev swiper-button-prev-history"></div>
+                </div>
+                <div class="containerRecente">
+                    <p class="textTitle">Opções visitadas recentemente:</p>
+                    <div id="recentContainer" class="recentContainer">
+                        <div class="swiper mySwiper mySwiper2">
+                            <div class="swiper-wrapper swiper-wrapper2">
+                                <div class="recent-skeleton">
+                                    <div class="skeleton"></div>
+                                    <div class="skeleton displayNoneSkeletonRecent500"></div>
+                                    <div class="skeleton displayNoneSkeletonRecent770"></div>
+                                    <div class="skeleton displayNoneSkeletonRecent1050"></div>
+                                    <div class="skeleton displayNoneSkeletonRecent1050"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next swiper-button-next-recent"></div>
+                    <div class="swiper-button-prev swiper-button-prev-recent"></div>
+                </div>
+                <div class="containerTasks">
+                    <div class="contentTop">
+                        <p class="textTitle">Meus quadros de tarefas:</p>
+                        <div class="plusButton">
+                            <img src="./assets/plus.svg" alt="">
+                        </div>
+                        <div class="contentTags">
+                            <div class="tag">
+                                <p>Minhas Tarefas</p>
+                                <img src="./assets/arrowRight.svg" alt="">
+                            </div>
+                            <div class="tag">
+                                <p>Tarefas em andamento</p>
+                                <img src="./assets/arrowRight.svg" alt="">
+                            </div>
+                            <div class="tag">
+                                <p>Tarefas por responsável</p>
+                                <img src="./assets/arrowRight.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tasksContainer" class="tasksContainer">
+                        <div class="boards-skeleton">
+                            <div class="skeleton"></div>
+                            <div class="skeleton displayNoneSkeletonBoards500"></div>
+                            <div class="skeleton displayNoneSkeletonBoards630"></div>
+                            <div class="skeleton displayNoneSkeletonBoards1024"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-button-next swiper-button-next-history"></div>
-            <div class="swiper-button-prev swiper-button-prev-history"></div>
-        </div>
-        <div class="containerRecente">
-            <p class="textTitle">Opções visitadas recentemente:</p>
-            <div id="recentContainer" class="recentContainer">
-                <div class="swiper mySwiper mySwiper2">
-                    <div class="swiper-wrapper swiper-wrapper2">
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-button-next swiper-button-next-recent"></div>
-            <div class="swiper-button-prev swiper-button-prev-recent"></div>
-        </div>
-        <div class="containerTasks">
-            <div class="contentTop">
-                <p class="textTitle">Meus quadros de tarefas:</p>
-                <div class="plusButton">
-                    <img src="./assets/plus.svg" alt="">
-                </div>
-                <div class="contentTags">
-                    <div class="tag">
-                        <p>Minhas Tarefas</p>
-                        <img src="./assets/arrowRight.svg" alt="">
-                    </div>
-                    <div class="tag">
-                        <p>Tarefas em andamento</p>
-                        <img src="./assets/arrowRight.svg" alt="">
-                    </div>
-                    <div class="tag">
-                        <p>Tarefas por responsável</p>
-                        <img src="./assets/arrowRight.svg" alt="">
-                    </div>
-                </div>
-            </div>
-            <div id="tasksContainer" class="tasksContainer">
             </div>
         </div>
     </section>
@@ -170,12 +234,26 @@
                         <input type="checkbox" id="scheduler">
                         <span>_Teste Scheduler.</span>
                     </label>
-                    <div class="checkBox">
+                    <div class="checkBox" data-js="openSubMenuChange">
                         <div class="boxLabel">
                             <label for="request">
                                 <span>Change Request</span>
                             </label>
-                            <img src="/assets/arrowRight.svg" alt="">
+                            <img src="/assets/arrowRight.svg" alt="Ícone de seta" data-js="imgArrowChange">
+                        </div>
+                        <div class="subMenu" data-js="subMenuChange">
+                            <label for="cliente">
+                                <input type="checkbox" id="cliente">
+                                <span>Cliente</span>
+                            </label>
+                            <label for="system">
+                                <input type="checkbox" id="system">
+                                <span>System Versions</span>
+                            </label>
+                            <label for="cobranca">
+                                <input type="checkbox" id="cobranca">
+                                <span>Envio de Cobrança</span>
+                            </label>
                         </div>
                     </div>
                     <label for="client">
@@ -198,17 +276,17 @@
                             <img src="/assets/arrowRight.svg" alt="" data-js="imgArrow">
                         </div>
                         <div class="subMenu" data-js="subMenu">
-                            <label for="cliente">
-                                <input type="checkbox" id="cliente">
-                                <span>Cliente</span>
+                            <label for="clienteDadosMestres">
+                                <input type="checkbox" id="clienteDadosMestres">
+                                <span>Cliente Dados mestres</span>
                             </label>
-                            <label for="system">
-                                <input type="checkbox" id="system">
-                                <span>System Versions</span>
+                            <label for="systemDadosMestres">
+                                <input type="checkbox" id="systemDadosMestres">
+                                <span>System Versions Dados mestres</span>
                             </label>
-                            <label for="cobranca">
-                                <input type="checkbox" id="cobranca">
-                                <span>Envio de Cobrança</span>
+                            <label for="cobrancaDadosMestres">
+                                <input type="checkbox" id="cobrancaDadosMestres">
+                                <span>Envio de Cobrança Dados mestres Dados Mestres</span>
                             </label>
                         </div>
                     </div>
@@ -221,11 +299,25 @@
                         <span>Lead site</span>
                     </label>
                     <div class="checkBox">
-                        <div class="boxLabel">
+                        <div class="boxLabel" data-js="openSubMenuMisc">
                             <label for="misc">
                                 <span>Misc</span>
                             </label>
-                            <img src="/assets/arrowRight.svg" alt="">
+                            <img src="/assets/arrowRight.svg" alt="" data-js="imgArrowMisc">
+                        </div>
+                        <div class="subMenu" data-js="subMenuMisc">
+                            <label for="clienteMisc">
+                                <input type="checkbox" id="clienteMisc">
+                                <span>Cliente Misc</span>
+                            </label>
+                            <label for="systemMisc">
+                                <input type="checkbox" id="systemMisc">
+                                <span>System Versions Misc</span>
+                            </label>
+                            <label for="cobrancaMisc">
+                                <input type="checkbox" id="cobrancaMisc">
+                                <span>Envio de Cobrança Misc</span>
+                            </label>
                         </div>
                     </div>
                     <label for="oportunidade">
@@ -245,11 +337,25 @@
                         <span>Proposta</span>
                     </label>
                     <div class="checkBox">
-                        <div class="boxLabel">
+                        <div class="boxLabel" data-js="openSubMenuReport">
                             <label for="report">
                                 <span>Report</span>
                             </label>
-                            <img src="/assets/arrowRight.svg" alt="">
+                            <img src="/assets/arrowRight.svg" alt="" data-js="imgArrowReport">
+                        </div>
+                        <div class="subMenu" data-js="subMenuReport">
+                            <label for="clienteReport">
+                                <input type="checkbox" id="clienteReport">
+                                <span>Cliente Report</span>
+                            </label>
+                            <label for="systemReport">
+                                <input type="checkbox" id="systemReport">
+                                <span>System Versions Report</span>
+                            </label>
+                            <label for="cobrancaReport">
+                                <input type="checkbox" id="cobrancaReport">
+                                <span>Envio de Cobrança Report</span>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -257,29 +363,30 @@
         </div>
     </div>
 
-    <script src="script/requests.js"></script>
     <script src="script/modal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+    <script src="script/requests.js" type="module"></script>
 
     <script>
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                const skeletons = document.querySelectorAll('.skeleton');
-                skeletons.forEach(skeleton => {
-                    skeleton.style.setProperty('--skeleton-display', 'none');
-                });
-            }, 4000);
-        });
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                const skeletons = document.querySelectorAll('.skeletonRecent');
-                skeletons.forEach(skeleton => {
-                    skeleton.style.setProperty('--skeleton-display', 'none');
-                });
-            }, 4000);
-        });
-        window.addEventListener('load', function() {
+        // window.addEventListener('load', function () {
+        //     setTimeout(() => {
+        //         const skeletons = document.querySelectorAll('.skeleton');
+        //         skeletons.forEach(skeleton => {
+        //             skeleton.style.setProperty('--skeleton-display', 'none');
+        //         });
+        //     }, 4000);
+        // });
+        // window.addEventListener('load', function () {
+        //     setTimeout(() => {
+        //         const skeletons = document.querySelectorAll('.skeletonRecent');
+        //         skeletons.forEach(skeleton => {
+        //             skeleton.style.setProperty('--skeleton-display', 'none');
+        //         });
+        //     }, 4000);
+        // });
+        window.addEventListener('load', function () {
             setTimeout(() => {
                 const skeletons = document.querySelectorAll('.skeletonSpanMetrics');
                 skeletons.forEach(skeleton => {
@@ -287,7 +394,7 @@
                 });
             }, 4000);
         });
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             setTimeout(() => {
                 const skeletons = document.querySelectorAll('.skeletonSpanMetricsText');
                 skeletons.forEach(skeleton => {
@@ -295,7 +402,7 @@
                 });
             }, 4000);
         });
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             setTimeout(() => {
                 const skeletons = document.querySelectorAll('.skeletonAtalhosText');
                 skeletons.forEach(skeleton => {
@@ -303,7 +410,7 @@
                 });
             }, 4000);
         });
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             setTimeout(() => {
                 const skeletons = document.querySelectorAll('.skeletonAtalhos');
                 skeletons.forEach(skeleton => {
@@ -314,78 +421,87 @@
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const menuSelectedLink = document.querySelector('.menuSelectedLink');
-        const menuMobile = document.querySelector('.menuMobile');
-        const menuItems = document.querySelectorAll('.menuMobile a');
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuSelectedLink = document.querySelector('.menuSelectedLink');
+            const menuMobile = document.querySelector('.menuMobile');
+            const menuItems = document.querySelectorAll('.menuMobile a');
 
-        function toggleMenu(event) {
-            if (window.innerWidth < 450) {
-                event.preventDefault();
-                menuMobile.classList.toggle('active');
+            function toggleMenu(event) {
+                if (window.innerWidth < 450) {
+                    event.preventDefault();
+                    menuMobile.classList.toggle('active');
+                }
             }
-        }
 
-        function closeMenu() {
-            menuMobile.classList.remove('active');
-        }
-
-        menuSelectedLink.addEventListener('click', toggleMenu);
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!menuSelectedLink.contains(event.target) && !menuMobile.contains(event.target)) {
-                closeMenu();
+            function closeMenu() {
+                menuMobile.classList.remove('active');
             }
-        });
 
-        // Close menu when clicking on menu items
-        menuItems.forEach(item => {
-            item.addEventListener('click', closeMenu);
+            menuSelectedLink.addEventListener('click', toggleMenu);
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function (event) {
+                if (!menuSelectedLink.contains(event.target) && !menuMobile.contains(event.target)) {
+                    closeMenu();
+                }
+            });
+
+            // Close menu when clicking on menu items
+            menuItems.forEach(item => {
+                item.addEventListener('click', closeMenu);
+            });
         });
-    });
     </script>
 
     <script>
         let swiper = new Swiper(".mySwiper1", {
-            slidesPerView: 2.4, // Mostra 6 slides inteiros por vez
+            slidesPerView: 2.4,
             slidesPerGroup: 2,
-            spaceBetween: 10,
+            spaceBetween: 11,
             navigation: {
                 nextEl: ".swiper-button-next-history",
                 prevEl: ".swiper-button-prev-history",
             },
             breakpoints: {
                 1200: {
-                slidesPerView: 9,
+                    slidesPerView: 9,
                 },
                 1024: {
-                slidesPerView: 6,
+                    slidesPerView: 6,
                 },
             },
         });
         let swiper2 = new Swiper(".mySwiper2", {
-            slidesPerView: 1.2, // Mostra 6 slides inteiros por vez
-            slidesPerGroup: 1,
+            slidesPerView: 1.3,
+            // slidesPerGroup: 1,
             spaceBetween: 10,
             navigation: {
                 nextEl: ".swiper-button-next-recent",
                 prevEl: ".swiper-button-prev-recent",
             },
             breakpoints: {
-                1200: {
-                slidesPerView: 5,
+                400: {
+                    slidesPerView: 1.5,
+                    // slidesPerGroup: 2,
+                },
+                480: {
+                    slidesPerView: 1.8,
+                    // slidesPerGroup: 2,
+                },
+                580: {
+                    slidesPerView: 2,
+                    // slidesPerGroup: 2,
                 },
                 870: {
-                slidesPerView: 3,
-                slidesPerGroup: 3,
+                    slidesPerView: 3,
+                    // slidesPerGroup: 3,
                 },
-                450: {
-                slidesPerView: 2,
-                slidesPerGroup: 2,
+                1200: {
+                    slidesPerView: 5,
                 },
             },
         });
     </script>
 </body>
+
 </html>
