@@ -421,36 +421,33 @@
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuSelectedLink = document.querySelector('.menuSelectedLink');
-            const menuMobile = document.querySelector('.menuMobile');
-            const menuItems = document.querySelectorAll('.menuMobile a');
+        const menuSelectedLink = document.querySelector('.menuSelectedLink');
+        const menuMobile = document.querySelector('.menuMobile');
+        const menuItems = document.querySelectorAll('.menuMobile a');
 
-            function toggleMenu(event) {
-                if (window.innerWidth < 450) {
-                    event.preventDefault();
-                    menuMobile.classList.toggle('active');
-                }
+        function toggleMenu(event) {
+            if (window.innerWidth < 450) {
+                event.preventDefault();
+                menuMobile.classList.toggle('active');
             }
+        }
 
-            function closeMenu() {
-                menuMobile.classList.remove('active');
+        function closeMenu() {
+            menuMobile.classList.remove('active');
+        }
+
+        menuSelectedLink.addEventListener('click', toggleMenu);
+
+        document.addEventListener('click', function (event) {
+            if (!menuSelectedLink.contains(event.target) && !menuMobile.contains(event.target)) {
+                closeMenu();
             }
-
-            menuSelectedLink.addEventListener('click', toggleMenu);
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function (event) {
-                if (!menuSelectedLink.contains(event.target) && !menuMobile.contains(event.target)) {
-                    closeMenu();
-                }
-            });
-
-            // Close menu when clicking on menu items
-            menuItems.forEach(item => {
-                item.addEventListener('click', closeMenu);
-            });
         });
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', closeMenu);
+        });
+        window.addEventListener('scroll', closeMenu);
     </script>
 
     <script>

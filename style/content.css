@@ -52,6 +52,7 @@ section {
   gap: 13px;
   margin-top: 5px;
   overflow-x: auto;
+  scrollbar-width: none;
   height: 40px;
 }
 
@@ -294,6 +295,7 @@ section {
   gap: 20px;
   margin-left: 47px;
   overflow-x: auto;
+  scrollbar-width: none;
   height: 40px;
 }
 .containerTasks .contentTags .tag {
