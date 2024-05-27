@@ -39,6 +39,13 @@ async function getKeyMetrics() {
       link_param: "Github",
       qty: 0,
     },
+    {
+      id: "xxx-yyy",
+      text: "Rascunho",
+      bgcolor: "#0081FF",
+      link_param: "Github",
+      qty: 0,
+    },
   ];
 
   return dataMetric;
