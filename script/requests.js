@@ -1,5 +1,4 @@
 import { swiperEl } from "./swiper.js";
-// import { sortable } from "./sortable.js";
 
 const reorderButton = document.getElementById("ordenacao");
 
@@ -256,8 +255,7 @@ const getRecentFeaturesVisits = async () => {
     },
   ];
 
-  // Adicionando cards cinzas para completar cada linha
-  const maxColunas = 5; // Número máximo de colunas
+  const maxColunas = 5;
   const totalCards = data.length;
   const cardsFaltantes = maxColunas - (totalCards % maxColunas);
 
@@ -267,8 +265,7 @@ const getRecentFeaturesVisits = async () => {
   // Gera IDs únicos para cada objeto
   data.forEach((item, index) => {
     if (!item.id || item.id === "xxx-yyy") {
-      // Se o ID for undefined ou padrão
-      item.id = `unique-id-${index}`; // Gere um ID único baseado no índice
+      item.id = `unique-id-${index}`;
     }
   });
 
@@ -383,8 +380,7 @@ async function getMyBoards() {
     },
   ];
 
-  // Adicionando cards cinzas para completar cada linha
-  const maxColunas = 6; // Número máximo de colunas
+  const maxColunas = 6;
   const totalCards = data.length;
   const cardsFaltantes = maxColunas - (totalCards % maxColunas);
 
@@ -431,7 +427,6 @@ function renderHistory(history) {
     slide.classList.add("swiper-slide");
     link.innerHTML = currentItem.text;
     link.href = currentItem.link_param;
-    // link.classList.add("linkHistory", "skeleton");
     slide.appendChild(link);
     swiperWrapper.appendChild(slide);
   }
@@ -597,7 +592,7 @@ const createShortcutHTMLElementToSwiper = (item) => {
   fixarDiv.classList.add("fixar");
 
   const fixarImg = document.createElement("img");
-  fixarImg.src = "./assets/fixar.svg"; // Inicialmente definido para fixar
+  fixarImg.src = "./assets/fixar.svg";
   fixarImg.alt = "";
 
   fixarDiv.appendChild(fixarImg);
@@ -653,8 +648,6 @@ const createShortcutHTMLElementToSortable = (item) => {
   shortcut.appendChild(fixarDiv);
   li.appendChild(shortcut);
 
-  // sortableListElement.classList.remove("sortable-list-hidden");
-
   return li;
 };
 
@@ -679,8 +672,6 @@ const addShortcutFromCard = (cardInfo) => {
     dataId: cardInfo.id,
   };
 
-  // shortcuts.push(newItem);
-  // localStorage.setItem("shortcuts", JSON.stringify(shortcuts));
 
   const updatedShortcuts = [...shortcuts, shortcutAddedByUser];
   localStorage.setItem("shortcuts", JSON.stringify(updatedShortcuts));
@@ -688,18 +679,6 @@ const addShortcutFromCard = (cardInfo) => {
 
   renderShortcutSlideIntoDOM(shortcutAddedByUser);
   renderShortcutSortableIntoDOM(shortcutAddedByUser);
-
-  removeSkeletonClasses();
-
-  // saveShortcutOrderIntoLocalStorage();
-
-  // Atualize a imagem de fixar para desafixar
-  //   const cardElement = document.getElementById(cardInfo.id);
-
-  //   if (cardElement) {
-  //     const fixarDiv = cardElement.querySelector(".fixar");
-  //     toggleFixarImage(fixarDiv, true);
-  //   }
 };
 
 const getSelectedShortcut = (id) => {
@@ -707,7 +686,7 @@ const getSelectedShortcut = (id) => {
   const label = checkbox.closest("label");
   const span = label.querySelector("span");
   const text = span.textContent.trim();
-  const icon = `./assets/clients.svg`; // Ajuste conforme necessário
+  const icon = `./assets/clients.svg`;
 
   const shortcutsArray = shortcutsStore.getShortcuts();
   const shortcutPosition = shortcutsArray.length;
@@ -732,8 +711,6 @@ const renderShortcutSlideIntoDOM = (shortcut) => {
   );
 
   swiperEl.swiper.addSlide(addShortcutButtonIndex, addedShortcutElement);
-  removeSkeletonClasses();
-  //   saveShortcutState(id, true);
 };
 
 const renderShortcutSortableIntoDOM = (shortcut) => {
@@ -742,9 +719,6 @@ const renderShortcutSortableIntoDOM = (shortcut) => {
   const newShortcutHTMLElement = createShortcutHTMLElementToSortable(shortcut);
 
   addShortcutButton.insertAdjacentElement("beforebegin", newShortcutHTMLElement);
-  removeSkeletonClasses();
-
-  // loadOrder();
 };
 
 const toggleShortcutPin = async (id, fromModal = true) => {
@@ -766,12 +740,6 @@ const toggleShortcutPin = async (id, fromModal = true) => {
     localStorage.setItem("shortcuts", JSON.stringify(updatedShortcuts));
     shortcutsStore.updateShortcuts();
 
-    // const cardElement = document.getElementById(id);
-    // if (cardElement) {
-    //   const fixarDiv = cardElement.querySelector(".fixar");
-    //   toggleFixarImage(fixarDiv, false);
-    // }
-
     return;
   }
 
@@ -784,131 +752,14 @@ const toggleShortcutPin = async (id, fromModal = true) => {
 };
 
 const removeShortcut = (id) => {
-  // const shortcuts = JSON.parse(localStorage.getItem("shortcuts")) || [];
   const shortcuts = getShortcutsFromDatabase();
-
-  // const updatedShortcuts = shortcuts.filter((shortcut) => shortcut.id !== id);
 
   localStorage.setItem("shortcuts", JSON.stringify(updatedShortcuts));
   shortcutsStore.updateShortcuts();
 
   const shortcutIndex = shortcuts.findIndex((shortcut) => shortcut.id === shortcutAlreadyExists[0].id);
   swiperEl.swiper.removeSlide(shortcutIndex);
-
-  // const shortcut = document.querySelector(`.boxCont#${id}`);
-
-  // if (shortcut) {
-  //   shortcut.remove();
-  // }
-
-  // saveShortcutOrderIntoLocalStorage();
-  // // Atualize a imagem de desafixar para fixar
-  // const cardElement = document.getElementById(id);
-
-  // if (cardElement) {
-  //   const fixarDiv = cardElement.querySelector(".fixar");
-  //   toggleFixarImage(fixarDiv, false);
-  // }
 };
-
-function saveShortcutState(id, checked) {
-  const shortcuts = JSON.parse(localStorage.getItem("shortcuts")) || [];
-  const shortcutToUpdate = shortcuts.find((shortcut) => shortcut.id === id);
-  if (shortcutToUpdate) {
-    shortcutToUpdate.checked = checked;
-    localStorage.setItem("shortcuts", JSON.stringify(shortcuts));
-  }
-}
-
-function toggleFixarImage(element, isFixed) {
-  const img = element.querySelector("img");
-  if (isFixed) {
-    img.src = "./assets/desafixar.svg"; // Caminho para a imagem de desafixar
-  } else {
-    img.src = "./assets/fixar.svg"; // Caminho para a imagem de fixar
-  }
-}
-
-function loadOrder() {
-  //   const order = JSON.parse(localStorage.getItem("sortable-order"));
-  //   const sortableListElement = document.querySelector("#sortable-list");
-  //   console.log(sortableListElement);
-  //   if (order) {
-  //     order.forEach((id) => {
-  //       const item = sortableListElement.querySelector(
-  //         `.boxCont[data-id='${id}']`
-  //       );
-  //       console.log(item);
-  //       if (item) {
-  //         sortableListElement.appendChild(item);
-  //       }
-  //     });
-  //   }
-}
-
-// let sortable = null;
-// const contentBottom = document.getElementById("sortable-list");
-
-function removeSkeletonClasses() {
-  const skeletonElements = document.querySelectorAll(".skeletonAtalhos, .skeletonAtalhosText");
-  skeletonElements.forEach((element) => {
-    element.classList.remove("skeletonAtalhos", "skeletonAtalhosText");
-  });
-}
-
-function applySkeletonClasses() {
-  const skeletonElements = document.querySelectorAll(
-    '.boxCont:not([data-loaded="true"]) .skeletonAtalhos, .boxCont:not([data-loaded="true"]) .skeletonAtalhosText',
-  );
-  skeletonElements.forEach((element) => {
-    element.classList.add("skeletonAtalhos", "skeletonAtalhosText");
-  });
-}
-
-// function addAddShortcutButton() {
-//   let mySwiper3 = document.querySelector(".mySwiper3");
-//   if (!mySwiper3) {
-//     mySwiper3 = document.createElement("div");
-//     // mySwiper3.classList.add('mySwiper3');
-//     document.body.appendChild(mySwiper3);
-//   }
-
-//   // let swiperWrapper3 = mySwiper3.querySelector('.swiper-wrapper3');
-//   let swiperWrapper = mySwiper3.querySelector(".swiper-wrapper");
-//   if (!swiperWrapper) {
-//     swiperWrapper = document.createElement("div");
-//     // swiperWrapper3.classList.add('swiper-wrapper3');
-//     mySwiper3.appendChild(swiperWrapper);
-//   }
-
-//   const addShortcut = document.createElement("a");
-//   addShortcut.href = "#";
-//   addShortcut.classList.add("boxCont", "btnAddShortcuts", "swiper-slide");
-//   addShortcut.setAttribute("data-js", "open-modal");
-
-//   const divImgAdd = document.createElement("div");
-//   divImgAdd.classList.add("boxImg", "boxContAdd");
-
-//   const imgAdd = document.createElement("img");
-//   imgAdd.src = "assets/plus.svg";
-//   imgAdd.alt = "Imagem caixa";
-
-//   divImgAdd.appendChild(imgAdd);
-//   addShortcut.appendChild(divImgAdd);
-
-//   const textAdd = document.createElement("p");
-//   textAdd.classList.add("textAdd");
-//   textAdd.textContent = "Adicionar atalhos";
-
-//   addShortcut.appendChild(textAdd);
-
-//   // Adicionar o novo botão de atalho dentro da 'swiper-wrapper3'
-//   swiperWrapper.appendChild(addShortcut);
-// }
-
-// function saveShortcutsIntoLocalStorage(shortcuts) {
-//   localStorage.setItem("shortcuts", JSON.stringify(shortcuts));
-// }
 
 function saveShortcutOrderIntoLocalStorage() {
   const sortableListElement = document.querySelector("#sortable-list");
@@ -1037,20 +888,11 @@ const initializeAddShortcutButton = (shortcuts) => {
   sortableListElement.insertAdjacentElement("beforeend", addButtonToSortable);
 };
 
-// const initializeFirstButtonsToSortable = (shortcuts) => {
-//   const sortableListElement = document.querySelector("#sortable-list");
-//   const [defaultButton1Sortable, defaultButton2Sortable] = createDefaultButtons({ slide: false });
-//   sortableListElement.append(defaultButton1Sortable, defaultButton2Sortable);
-// };
-
 const toggleSortable = async (event) => {
-  // const shortcutsArray = shortcutsStore.getShortcuts();
   const clickedElement = event.target;
   const shouldDisableSortable = !clickedElement.checked;
-  // const swiperWrapper = swiperEl.swiper.wrapperEl;
   const sortableListElement = document.getElementById("sortable-list");
 
-  //   swiperWrapper.setAttribute("id", "sortable-list");
 
   if (shouldDisableSortable) {
     swiperEl.classList.remove("swiper-hidden");
@@ -1062,35 +904,17 @@ const toggleSortable = async (event) => {
   swiperEl.swiper.disable();
   swiperEl.classList.add("swiper-hidden");
 
-  // const sortableListItems = Array.from(sortableListElement.children);
-
-  // for (let index = 0; index <= sortableListItems.length - 1; index++) {
-  //   const sortableListItem = sortableListItems[index];
-  //   const lastItemIndex = sortableListItems.length - 1 === index;
-
-  //   if (lastItemIndex) {
-  //     break;
-  //   }
-
-  //   const imageFixar = sortableListItem.querySelector(".fixar img");
-  //   console.log(imageFixar);
-  //   imageFixar.setAttribute("src", "./assets/ordenacao.svg");
-  // }
-
-  removeSkeletonClasses();
   sortableListElement.classList.remove("sortable-list-hidden");
 };
 
 const initApp = async () => {
   const sortableListElement = document.getElementById("sortable-list");
 
-  const history = await getLogHistory(); // 3s, 6s, 4s
+  const history = await getLogHistory();
   const metric = await getKeyMetrics();
   const shortcuts = await getShortcutsFromDatabase();
   const visits = await getRecentFeaturesVisits();
   const boards = await getMyBoards();
-
-  // Promise.all([history, metric, shortcuts, visits, boards]);
 
   const isShortcutsEmpty = shortcuts.length === 0;
 
@@ -1141,12 +965,7 @@ const initApp = async () => {
   renderKeyMetrics(metric);
   renderRecentFeaturesVisits(visits);
   renderMyBoards(boards);
-  setTimeout(() => {}, 4000);
 };
 
 window.addEventListener("load", initApp);
 reorderButton.addEventListener("change", toggleSortable);
-
-// applySkeletonClasses();
-// loadOrder();
-// addAddShortcutButton();
